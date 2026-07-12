@@ -165,6 +165,7 @@ def run_doctor():
         ("AEGIS-Memory Engine", memory_mod is not None),
         ("Knowledge Graph Index", True),
         ("Git Repository Access", os.path.exists(".git")),
+        ("AEGIS Manifest Found", os.path.exists(os.path.join(os.path.dirname(__file__), "aegis_manifest.yaml"))),
     ]
     
     all_good = True

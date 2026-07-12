@@ -5,10 +5,8 @@
 # All rights reserved.
 # ==========================================
 
-import random
 import time
 from typing import List
-
 
 class BaseAgent:
     """Base class for all AEGIS Consensus review agents."""
@@ -25,14 +23,14 @@ class ArchitectAgent(BaseAgent):
         super().__init__("Architect Agent", weight=1.5)
 
     def review(self, context: dict) -> dict:
-        # Simulate architectural review
         time.sleep(0.1)
-        issues = []
-        code = context.get("code", "")
-        if "global" in code:
-            issues.append("Hidden global state detected")
-        approved = len(issues) == 0
-        return {"approved": approved, "reason": issues[0] if issues else "Architecture looks clean."}
+        # Check if governance found architecture issues
+        issues = context.get("issues", [])
+        arch_issues = [i for i in issues if "Architecture" in i.get("detail", "")]
+        
+        if arch_issues:
+            return {"approved": False, "reason": f"Architecture violation: {arch_issues[0]['detail']}"}
+        return {"approved": True, "reason": "Architecture looks clean."}
 
 
 class SecurityAgent(BaseAgent):
@@ -41,12 +39,12 @@ class SecurityAgent(BaseAgent):
 
     def review(self, context: dict) -> dict:
         time.sleep(0.1)
-        code = context.get("code", "")
-        risky = any(p in code for p in ["eval(", "exec(", "os.system(", "subprocess.call("])
-        return {
-            "approved": not risky,
-            "reason": "Security violation detected" if risky else "No injection risks found."
-        }
+        issues = context.get("issues", [])
+        sec_issues = [i for i in issues if i.get("severity") == "Critical"]
+        
+        if sec_issues:
+            return {"approved": False, "reason": f"Security violation: {sec_issues[0]['detail']}"}
+        return {"approved": True, "reason": "No critical security risks found."}
 
 
 class PerformanceAgent(BaseAgent):
@@ -91,11 +89,11 @@ class AIPairReview:
     def __init__(self):
         self.engine = VotingEngine()
 
-    def run_consensus(self, task_context: str) -> bool:
-        print(f"\n  Running AI Pair Review for: '{task_context}'")
+    def run_consensus(self, governance_results: dict) -> bool:
+        print(f"\n  Running AI Pair Consensus Review...")
         results = []
         for agent in self.engine.agents:
-            result = agent.review({"code": task_context})
+            result = agent.review(governance_results)
             verdict = "\033[92mAPPROVED\033[0m" if result["approved"] else "\033[91mVETOED\033[0m"
             print(f"    → {agent.name:<22} [{verdict}] — {result['reason']}")
             results.append(result["approved"])

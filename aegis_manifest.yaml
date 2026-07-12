@@ -93,13 +93,13 @@ labs:
     module: AEGIS-Provider
     entry: provider.py
     description: LLM provider abstraction (OpenAI, Gemini, Anthropic)
-    status: active
+    status: planned
 
   sdk:
     module: AEGIS-SDK
     entry: sdk.py
     description: Public SDK for third-party integrations
-    status: active
+    status: planned
 
 packs:
   - id: laravel-pack

@@ -122,7 +122,7 @@ class WorkflowOrchestrator:
         consensus_approved = True
         if self.voting_mod:
             review = self.voting_mod.AIPairReview()
-            consensus_approved = review.run_consensus(task)
+            consensus_approved = review.run_consensus(gov_result)
         pipeline_report["stages"]["consensus"] = {"approved": consensus_approved}
 
         # ── FINAL VERDICT ─────────────────────────────────────────────
