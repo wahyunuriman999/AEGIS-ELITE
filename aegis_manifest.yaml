@@ -132,8 +132,8 @@ external_tools:
     install: "npm install -g n8n"
     check_cmd: "n8n --version"
     integration: AEGIS-Workflow
-    status: pending-manual
-    note: "Large package (~500MB). Run manually: npm install -g n8n"
+    status: active
+    note: "Installed via --ignore-scripts"
 
   - id: praisonai
     description: Multi-agent framework for Consensus Engine
