@@ -10,9 +10,18 @@ import sys
 import time
 import os
 
-from governance import GovernanceEngine
-from consensus import AIPairReview
-from benchmark import BenchmarkEngine
+from importlib.util import spec_from_file_location, module_from_spec
+
+# Dynamically load the new enterprise modules
+def load_module(name, path):
+    spec = spec_from_file_location(name, path)
+    mod = module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+policy_mod = load_module("policy_engine", os.path.join(os.path.dirname(__file__), "AEGIS-Governance", "policy_engine.py"))
+voting_mod = load_module("voting_engine", os.path.join(os.path.dirname(__file__), "AEGIS-Consensus", "voting_engine.py"))
+bench_mod = load_module("runner", os.path.join(os.path.dirname(__file__), "AEGIS-Benchmark", "runner.py"))
 
 def print_banner():
     print("""
