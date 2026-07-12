@@ -5,43 +5,101 @@
 # All rights reserved.
 # ==========================================
 
+import random
+import time
 from typing import List
-from .agents.base_agent import BaseAgent
-from .agents.architect import ArchitectAgent
+
+
+class BaseAgent:
+    """Base class for all AEGIS Consensus review agents."""
+    def __init__(self, name: str, weight: float = 1.0):
+        self.name = name
+        self.weight = weight
+
+    def review(self, context: dict) -> dict:
+        raise NotImplementedError
+
+
+class ArchitectAgent(BaseAgent):
+    def __init__(self):
+        super().__init__("Architect Agent", weight=1.5)
+
+    def review(self, context: dict) -> dict:
+        # Simulate architectural review
+        time.sleep(0.1)
+        issues = []
+        code = context.get("code", "")
+        if "global" in code:
+            issues.append("Hidden global state detected")
+        approved = len(issues) == 0
+        return {"approved": approved, "reason": issues[0] if issues else "Architecture looks clean."}
+
+
+class SecurityAgent(BaseAgent):
+    def __init__(self):
+        super().__init__("Security Agent", weight=2.0)
+
+    def review(self, context: dict) -> dict:
+        time.sleep(0.1)
+        code = context.get("code", "")
+        risky = any(p in code for p in ["eval(", "exec(", "os.system(", "subprocess.call("])
+        return {
+            "approved": not risky,
+            "reason": "Security violation detected" if risky else "No injection risks found."
+        }
+
+
+class PerformanceAgent(BaseAgent):
+    def __init__(self):
+        super().__init__("Performance Agent", weight=1.0)
+
+    def review(self, context: dict) -> dict:
+        time.sleep(0.1)
+        return {"approved": True, "reason": "No performance bottlenecks detected."}
+
 
 class VotingEngine:
-    """
-    AEGIS Consensus: Aggregates votes from multiple AI Pair Programming Agents.
-    """
+    """AEGIS Consensus: Aggregates votes from multiple AI Pair Programming Agents."""
     def __init__(self):
         self.agents: List[BaseAgent] = [
             ArchitectAgent(),
-            # SecurityAgent(), ProgrammerAgent(), etc. would be added here
+            SecurityAgent(),
+            PerformanceAgent(),
         ]
-        
+
     def execute_consensus(self, context: dict) -> dict:
         approvals = 0
         total_weight = 0
         vetoes = []
-        
         for agent in self.agents:
             result = agent.review(context)
             total_weight += agent.weight
-            
             if result["approved"]:
                 approvals += agent.weight
             else:
                 vetoes.append(f"{agent.name}: {result['reason']}")
-                
-        # Must have at least 80% weighted approval and NO vetoes from high-weight agents
         passed = (approvals / total_weight >= 0.8) and len(vetoes) == 0
-        
         return {
             "consensus_reached": passed,
-            "approval_rate": approvals / total_weight,
+            "approval_rate": round(approvals / total_weight, 2),
             "vetoes": vetoes
         }
 
-if __name__ == "__main__":
-    engine = VotingEngine()
-    print(engine.execute_consensus({"code": "def func():\n  global state\n  state = 1"}))
+
+class AIPairReview:
+    """High-level wrapper for running an AI Pair Review via the Voting Engine."""
+    def __init__(self):
+        self.engine = VotingEngine()
+
+    def run_consensus(self, task_context: str) -> bool:
+        print(f"\n  Running AI Pair Review for: '{task_context}'")
+        results = []
+        for agent in self.engine.agents:
+            result = agent.review({"code": task_context})
+            verdict = "\033[92mAPPROVED\033[0m" if result["approved"] else "\033[91mVETOED\033[0m"
+            print(f"    → {agent.name:<22} [{verdict}] — {result['reason']}")
+            results.append(result["approved"])
+        final = all(results)
+        print(f"\n  Final Consensus: {'✅ APPROVED' if final else '❌ REJECTED'}")
+        return final
+

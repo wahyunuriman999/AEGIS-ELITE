@@ -1,0 +1,120 @@
+name: AEGIS Elite
+version: 12.0.0
+description: >
+  AI Engineering Platform - Enterprise Cognitive Runtime.
+  All engines are registered here as the single source of truth.
+
+core:
+  kernel:
+    module: AEGIS-Kernel
+    entry: registry.py
+    description: Dynamic engine loader and registry
+    status: active
+
+  compiler:
+    module: AEGIS-Compiler
+    entry: compiler.py
+    description: Task compilation and routing
+    status: active
+
+  runtime:
+    module: AEGIS-Runtime
+    entry: runner.py
+    description: Execution runtime scheduler
+    status: active
+
+elite:
+  governance:
+    module: AEGIS-Governance
+    entry: policy_engine.py
+    description: Policy validation and code governance audit
+    capabilities: [scan, audit, enforce]
+    status: active
+
+  consensus:
+    module: AEGIS-Consensus
+    entry: voting_engine.py
+    description: Multi-agent AI pair review voting
+    capabilities: [vote, resolve, approve]
+    status: active
+
+  memory:
+    module: AEGIS-Memory
+    entry: memory_engine.py
+    description: Project memory, ADR ledger, and learning loop
+    capabilities: [snapshot, record, learn]
+    status: active
+
+  risk:
+    module: AEGIS-Risk
+    entry: risk_assessor.py
+    description: Pre-change blast-radius and risk analysis
+    capabilities: [assess, predict, block]
+    status: active
+
+  benchmark:
+    module: AEGIS-Benchmark
+    entry: runner.py
+    description: AEGIS vs industry AI engineering benchmark
+    capabilities: [run, score, compare]
+    status: active
+
+  workflow:
+    module: AEGIS-Workflow
+    entry: orchestrator.py
+    description: End-to-end pipeline orchestrator (Risk > Governance > Memory > Consensus)
+    capabilities: [pipeline, orchestrate]
+    status: active
+
+platform:
+  studio:
+    module: AEGIS-Studio
+    entry: web_server.py
+    description: Enterprise Dashboard and Visual Architecture GUI
+    capabilities: [dashboard, graph, visualize]
+    status: active
+    port: 8080
+
+  marketplace:
+    module: AEGIS-Marketplace
+    entry: plugin_manager.py
+    description: Extension pack manager (install/list/remove packs)
+    capabilities: [install, list, remove]
+    status: active
+
+  analytics:
+    module: AEGIS-Analytics
+    entry: analytics.py
+    description: Telemetry, usage analytics, and health monitoring
+    status: planned
+
+labs:
+  provider:
+    module: AEGIS-Provider
+    entry: provider.py
+    description: LLM provider abstraction (OpenAI, Gemini, Anthropic)
+    status: active
+
+  sdk:
+    module: AEGIS-SDK
+    entry: sdk.py
+    description: Public SDK for third-party integrations
+    status: active
+
+packs:
+  - id: laravel-pack
+    description: Laravel-specific governance rules and patterns
+    version: 1.0.0
+    status: available
+  - id: flutter-pack
+    description: Flutter/Dart governance and architecture patterns
+    version: 1.0.0
+    status: available
+  - id: react-pack
+    description: React/Next.js governance and component patterns
+    version: 1.0.0
+    status: available
+  - id: python-pack
+    description: Python/FastAPI governance and best practices
+    version: 1.0.0
+    status: available

@@ -27,6 +27,9 @@ policy_mod = load_module("policy_engine", os.path.join(os.path.dirname(__file__)
 voting_mod = load_module("voting_engine", os.path.join(os.path.dirname(__file__), "AEGIS-Consensus", "voting_engine.py"))
 bench_mod = load_module("runner", os.path.join(os.path.dirname(__file__), "AEGIS-Benchmark", "runner.py"))
 memory_mod = load_module("memory_engine", os.path.join(os.path.dirname(__file__), "AEGIS-Memory", "memory_engine.py"))
+orchestrator_mod = load_module("orchestrator", os.path.join(os.path.dirname(__file__), "AEGIS-Workflow", "orchestrator.py"))
+plugin_mod = load_module("plugin_manager", os.path.join(os.path.dirname(__file__), "AEGIS-Marketplace", "plugin_manager.py"))
+studio_mod = load_module("web_server", os.path.join(os.path.dirname(__file__), "AEGIS-Studio", "web_server.py"))
 
 def print_banner():
     print("""
@@ -206,6 +209,22 @@ def main():
     subparsers.add_parser("doctor", help="Check AEGIS environment health")
     subparsers.add_parser("benchmark", help="Run AEGIS vs Standard AI Benchmark Suite")
     
+    # pipeline
+    pipeline_parser = subparsers.add_parser("pipeline", help="Run the full AEGIS Elite unified pipeline")
+    pipeline_parser.add_argument("--task", default="Full Project Analysis", help="Task context description")
+    pipeline_parser.add_argument("--path", default=".", help="Workspace path")
+
+    # studio
+    studio_parser = subparsers.add_parser("studio", help="Open AEGIS Elite Studio dashboard in browser")
+    studio_parser.add_argument("--port", type=int, default=8080, help="Studio port")
+
+    # marketplace
+    subparsers.add_parser("marketplace", help="List available extension packs")
+
+    # install
+    install_parser = subparsers.add_parser("install", help="Install an extension pack")
+    install_parser.add_argument("pack", help="Pack ID to install")
+
     args = parser.parse_args()
     
     if args.command == "init":
@@ -226,6 +245,31 @@ def main():
         run_doctor()
     elif args.command == "benchmark":
         run_benchmark()
+    elif args.command == "pipeline":
+        if orchestrator_mod:
+            o = orchestrator_mod.WorkflowOrchestrator(os.path.dirname(__file__))
+            o.run_pipeline(args.task, args.path)
+        else:
+            print("[ERROR] Workflow Orchestrator not found.")
+    elif args.command == "studio":
+        if studio_mod:
+            import webbrowser
+            webbrowser.open(f"http://localhost:{args.port}")
+            studio_mod.run_studio(port=args.port)
+        else:
+            print("[ERROR] Studio module not found.")
+    elif args.command == "marketplace":
+        if plugin_mod:
+            pm = plugin_mod.PluginManager(".")
+            pm.list_available()
+        else:
+            print("[ERROR] Plugin Manager not found.")
+    elif args.command == "install":
+        if plugin_mod:
+            pm = plugin_mod.PluginManager(".")
+            pm.install(args.pack)
+        else:
+            print("[ERROR] Plugin Manager not found.")
     else:
         parser.print_help()
 
