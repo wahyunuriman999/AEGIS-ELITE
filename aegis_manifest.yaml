@@ -1,0 +1,194 @@
+name: AEGIS Elite
+version: 12.0.0
+description: >
+  AI Engineering Platform - Enterprise Cognitive Runtime.
+  All engines are registered here as the single source of truth.
+
+core:
+  kernel:
+    module: AEGIS-Kernel
+    entry: registry.py
+    description: Dynamic engine loader and registry
+    status: active
+
+  compiler:
+    module: AEGIS-Compiler
+    entry: compiler.py
+    description: Task compilation and routing
+    status: active
+
+  runtime:
+    module: AEGIS-Runtime
+    entry: runner.py
+    description: Execution runtime scheduler
+    status: active
+
+elite:
+  governance:
+    module: AEGIS-Governance
+    entry: policy_engine.py
+    description: Policy validation and code governance audit
+    capabilities: [scan, audit, enforce]
+    status: active
+
+  consensus:
+    module: AEGIS-Consensus
+    entry: voting_engine.py
+    description: Multi-agent AI pair review voting
+    capabilities: [vote, resolve, approve]
+    status: active
+
+  memory:
+    module: AEGIS-Memory
+    entry: memory_engine.py
+    description: Project memory, ADR ledger, and learning loop
+    capabilities: [snapshot, record, learn]
+    status: active
+
+  risk:
+    module: AEGIS-Risk
+    entry: risk_assessor.py
+    description: Pre-change blast-radius and risk analysis
+    capabilities: [assess, predict, block]
+    status: active
+
+  benchmark:
+    module: AEGIS-Benchmark
+    entry: runner.py
+    description: AEGIS vs industry AI engineering benchmark
+    capabilities: [run, score, compare]
+    status: active
+
+  workflow:
+    module: AEGIS-Workflow
+    entry: orchestrator.py
+    description: End-to-end pipeline orchestrator (Risk > Governance > Memory > Consensus)
+    capabilities: [pipeline, orchestrate]
+    status: active
+
+platform:
+  studio:
+    module: AEGIS-Studio
+    entry: web_server.py
+    description: Enterprise Dashboard and Visual Architecture GUI
+    capabilities: [dashboard, graph, visualize]
+    status: active
+    port: 8080
+
+  marketplace:
+    module: AEGIS-Marketplace
+    entry: plugin_manager.py
+    description: Extension pack manager (install/list/remove packs)
+    capabilities: [install, list, remove]
+    status: active
+
+  analytics:
+    module: AEGIS-Analytics
+    entry: analytics.py
+    description: Telemetry, usage analytics, and health monitoring
+    status: planned
+
+labs:
+  provider:
+    module: AEGIS-Provider
+    entry: provider.py
+    description: LLM provider abstraction (OpenAI, Gemini, Anthropic)
+    status: planned
+
+  sdk:
+    module: AEGIS-SDK
+    entry: sdk.py
+    description: Public SDK for third-party integrations
+    status: planned
+
+packs:
+  - id: laravel-pack
+    description: Laravel-specific governance rules and patterns
+    version: 1.0.0
+    status: available
+  - id: flutter-pack
+    description: Flutter/Dart governance and architecture patterns
+    version: 1.0.0
+    status: available
+  - id: react-pack
+    description: React/Next.js governance and component patterns
+    version: 1.0.0
+    status: available
+  - id: python-pack
+    description: Python/FastAPI governance and best practices
+    version: 1.0.0
+    status: available
+
+external_tools:
+  - id: claude-code
+    description: Anthropic Claude Code CLI (AI-powered coding terminal)
+    install: "npm install -g @anthropic-ai/claude-code"
+    check_cmd: "claude --version"
+    integration: AEGIS-Compiler
+    status: active
+
+  - id: n8n
+    description: Node-based workflow automation engine
+    install: "npm install -g n8n"
+    check_cmd: "n8n --version"
+    integration: AEGIS-Workflow
+    status: pending-manual
+    note: "Large package (~500MB). Run manually: npm install -g n8n"
+
+  - id: praisonai
+    description: Multi-agent framework for Consensus Engine
+    install: "pip install praisonai --prefer-binary"
+    check_cmd: "praisonai --version"
+    integration: AEGIS-Consensus
+    status: active
+
+  - id: firecrawl-py
+    description: Web scraping & docs ingestion for Knowledge Engine
+    install: "pip install firecrawl-py"
+    check_cmd: "python -c \"import firecrawl\""
+    integration: AEGIS-Knowledge
+    status: active
+
+knowledge_references:
+  path: AEGIS-Knowledge/References
+  sources:
+    - name: system-prompts-and-models
+      url: https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools
+      purpose: Study system prompts of Cursor, Copilot, Devin
+      status: cloned
+    - name: letta-ai-skills
+      url: https://github.com/letta-ai/skills
+      purpose: Memory management patterns for AEGIS-Memory
+      status: cloned
+    - name: minimax-skills
+      url: https://github.com/MiniMax-AI/skills
+      purpose: Agent skill patterns
+      status: cloned
+    - name: cre-agent-skills
+      url: https://github.com/ahacker-1/cre-agent-skills
+      purpose: Agent skill implementations
+      status: cloned
+    - name: AI-research-skills
+      url: https://github.com/orchestra-research/AI-research-SKILLs
+      purpose: Research-grade AI skill patterns
+      status: cloned
+    - name: PraisonAI
+      url: https://github.com/MervinPraison/PraisonAI
+      purpose: Multi-agent framework reference
+      status: cloned
+    - name: AutoGPT
+      url: https://github.com/Significant-Gravitas/AutoGPT
+      purpose: Autonomous agent loop architecture (docs only - path limit)
+      status: retrying
+    - name: hermes-agent
+      url: https://github.com/NousResearch/hermes-agent
+      purpose: Local LLM agent architecture
+      status: cloned
+    - name: firecrawl
+      url: https://github.com/mendableai/firecrawl
+      purpose: Web doc ingestion reference (sparse clone)
+      status: cloned
+    - name: notebooklm-mcp-cli
+      url: https://github.com/jacob-bd/notebooklm-mcp-cli
+      purpose: NotebookLM-style RAG MCP CLI
+      status: cloned
