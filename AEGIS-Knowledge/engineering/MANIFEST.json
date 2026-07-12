@@ -1,0 +1,1 @@
+{"release":"02_Engineering","version":"4.1.0","status":"stable","owns":["code_craft","testing","debugging","observability","review"],"priority_default":"high","depends_on_domains":["foundation"],"triggers":["debugging","refactoring","performance","security","testing"]}

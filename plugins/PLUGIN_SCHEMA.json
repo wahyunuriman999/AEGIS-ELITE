@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AEOS Domain Plugin Manifest",
+  "description": "Every top-level knowledge domain (foundation, engineering, architecture, backend, database, frontend, and any future addition) is a plugin described by this schema. A new domain becomes usable by (1) adding a folder with a MANIFEST.json conforming to this schema, (2) adding its trigger keys to routing.json, (3) adding its file nodes to knowledge.graph.json. No change to SKILL.md's core runtime (Part 1) is required to add a domain — that is what makes domains plugins rather than hardcoded sections.",
+  "type": "object",
+  "required": ["release", "version", "status", "owns", "priority_default", "triggers"],
+  "properties": {
+    "release": { "type": "string", "description": "Human-readable release/module name, e.g. '06_Frontend'." },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "type": "string", "enum": ["experimental", "stable", "deprecated"] },
+    "owns": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Concepts this domain is the authority on. Used to detect ownership conflicts between plugins at install time — two plugins claiming the same concept must be reconciled in PRECEDENCE.md before both are enabled."
+    },
+    "priority_default": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"],
+      "description": "Default priority applied to this domain's nodes in knowledge.graph.json unless a node overrides it."
+    },
+    "depends_on_domains": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Other domain names this plugin assumes are loaded, e.g. frontend depends_on_domains: [backend, foundation]."
+    },
+    "triggers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Trigger keys (from routing.json) this plugin answers for. Used to detect routing collisions between plugins."
+    }
+  }
+}

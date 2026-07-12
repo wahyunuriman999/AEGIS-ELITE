@@ -1,0 +1,1 @@
+{"release":"05_Database","version":"4.1.0","status":"stable","owns":["schema_design","transactions","migrations","storage_choice"],"priority_default":"high","depends_on_domains":["foundation","architecture"],"triggers":["database_change","query_optimization"]}
