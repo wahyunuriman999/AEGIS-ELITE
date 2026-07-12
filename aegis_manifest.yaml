@@ -179,7 +179,8 @@ knowledge_references:
     - name: AutoGPT
       url: https://github.com/Significant-Gravitas/AutoGPT
       purpose: Autonomous agent loop architecture (docs only - path limit)
-      status: retrying
+      status: active
+      note: "Downloaded via GitHub API (README, AGENTS.md, CONTRIBUTING.md, repo_structure.json)"
     - name: hermes-agent
       url: https://github.com/NousResearch/hermes-agent
       purpose: Local LLM agent architecture
