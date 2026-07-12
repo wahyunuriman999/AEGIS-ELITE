@@ -6,6 +6,7 @@
   <title>AEGIS Elite Studio | Enterprise Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <style>
     :root {
       --bg-primary: #080b14;
@@ -631,28 +632,9 @@
         <div class="card-header">
           <div class="card-title">🏗️ Architecture Topology</div>
         </div>
-        <div class="arch-graph">
-          <div class="arch-row">
-            <div class="arch-node core">AEGIS-Kernel</div>
-          </div>
-          <div class="arch-connector"></div>
-          <div class="arch-row" style="gap:8px;">
-            <div class="arch-node elite">Governance</div>
-            <div class="arch-node elite">Risk</div>
-            <div class="arch-node elite">Consensus</div>
-          </div>
-          <div class="arch-connector"></div>
-          <div class="arch-row" style="gap:8px;">
-            <div class="arch-node elite">Memory</div>
-            <div class="arch-node elite">Compiler</div>
-            <div class="arch-node elite">Benchmark</div>
-          </div>
-          <div class="arch-connector"></div>
-          <div class="arch-row" style="gap:8px;">
-            <div class="arch-node platform">Studio GUI</div>
-            <div class="arch-node platform">Marketplace</div>
-            <div class="arch-node platform">Analytics</div>
-          </div>
+        <div class="arch-graph" id="mermaid-container">
+          <!-- Mermaid graph will be injected here -->
+          <div style="color: var(--text-muted); font-size: 12px; font-family: 'JetBrains Mono', monospace;">Loading topology...</div>
         </div>
       </div>
 
@@ -690,6 +672,9 @@
 </div>
 
 <script>
+  // Initialize Mermaid
+  mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+
   // Animate score bars on load
   document.addEventListener('DOMContentLoaded', () => {
     const bars = document.querySelectorAll('.score-bar-fill');
@@ -698,6 +683,20 @@
       bar.style.width = '0';
       setTimeout(() => { bar.style.width = w; }, 300);
     });
+
+    // Fetch and render topology
+    fetch('/api/topology')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('mermaid-container');
+        container.innerHTML = `<div class="mermaid">${data.mermaid}</div>`;
+        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+      })
+      .catch(err => {
+        console.error('Failed to load topology:', err);
+        document.getElementById('mermaid-container').innerHTML = 
+          `<div style="color: var(--accent-red); font-size: 12px;">Failed to load topology graph.</div>`;
+      });
   });
 </script>
 </body>

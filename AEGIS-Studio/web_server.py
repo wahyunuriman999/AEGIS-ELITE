@@ -74,6 +74,52 @@ class StudioHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps(data).encode())
 
+        elif self.path == "/api/topology":
+            topology_data = {
+                "mermaid": '''
+graph TD
+    classDef core fill:rgba(99,179,237,0.1),stroke:rgba(99,179,237,0.3),color:#63b3ed,stroke-width:1px
+    classDef elite fill:rgba(104,211,145,0.1),stroke:rgba(104,211,145,0.3),color:#68d391,stroke-width:1px
+    classDef platform fill:rgba(246,173,85,0.1),stroke:rgba(246,173,85,0.3),color:#f6ad55,stroke-width:1px
+    classDef external fill:transparent,stroke:rgba(255,255,255,0.1),stroke-dasharray: 5 5,color:#718096
+
+    %% Kernel Layer
+    A(AEGIS-Kernel):::core
+
+    %% Elite Layer
+    B(Governance):::elite
+    C(Risk):::elite
+    D(Consensus):::elite
+    E(Memory):::elite
+    F(Compiler):::elite
+    G(Benchmark):::elite
+
+    %% Platform Layer
+    H(Studio GUI):::platform
+    I(Marketplace):::platform
+    J(Analytics):::platform
+
+    A --> B
+    A --> C
+    A --> D
+    
+    B --> E
+    C --> F
+    D --> G
+
+    E --> H
+    F --> I
+    G --> J
+
+    %% Git Hook integration
+    Git((Git Hooks)):::external -.->|Trigger| A
+                '''
+            }
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps(topology_data).encode())
+
         else:
             self._not_found()
 

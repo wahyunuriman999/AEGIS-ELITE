@@ -30,6 +30,7 @@ memory_mod = load_module("memory_engine", os.path.join(os.path.dirname(__file__)
 orchestrator_mod = load_module("orchestrator", os.path.join(os.path.dirname(__file__), "AEGIS-Workflow", "orchestrator.py"))
 plugin_mod = load_module("plugin_manager", os.path.join(os.path.dirname(__file__), "AEGIS-Marketplace", "plugin_manager.py"))
 studio_mod = load_module("web_server", os.path.join(os.path.dirname(__file__), "AEGIS-Studio", "web_server.py"))
+git_hooks_mod = load_module("git_hooks", os.path.join(os.path.dirname(__file__), "AEGIS-Kernel", "git_hooks.py"))
 
 def print_banner():
     print("""
@@ -224,6 +225,9 @@ def main():
     # install
     install_parser = subparsers.add_parser("install", help="Install an extension pack")
     install_parser.add_argument("pack", help="Pack ID to install")
+    
+    # install-hooks
+    subparsers.add_parser("install-hooks", help="Install AEGIS as a git pre-commit hook")
 
     args = parser.parse_args()
     
@@ -270,6 +274,12 @@ def main():
             pm.install(args.pack)
         else:
             print("[ERROR] Plugin Manager not found.")
+    elif args.command == "install-hooks":
+        if git_hooks_mod:
+            manager = git_hooks_mod.GitHooksManager(".")
+            manager.install_pre_commit()
+        else:
+            print("[ERROR] Git Hooks Manager not found.")
     else:
         parser.print_help()
 
