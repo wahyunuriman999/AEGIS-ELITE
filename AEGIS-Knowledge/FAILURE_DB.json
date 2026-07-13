@@ -1,0 +1,6 @@
+{
+  "database_name": "AEGIS_Failure_Database",
+  "version": "1.0.0",
+  "description": "A persistent database to store all hallucinations, bad architectures, security issues, and wrong patterns encountered by the AEGIS Cognitive Runtime. AI agents must query this DB to avoid repeating mistakes.",
+  "failures": []
+}

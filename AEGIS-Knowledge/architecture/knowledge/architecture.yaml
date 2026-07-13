@@ -1,0 +1,6 @@
+module: architecture
+status: stable
+version: 4.0.0
+owns:
+  - patterns: [layered, clean, hexagonal, ddd, cqrs, event_driven, microservices, monolith]
+  - decision_inputs: [domain_complexity, read_write_asymmetry, org_scaling_need, reversibility]

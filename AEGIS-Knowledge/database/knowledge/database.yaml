@@ -1,0 +1,7 @@
+module: database
+status: stable
+version: 4.0.0
+owns:
+  - engines: [postgresql, mysql, mongodb, redis]
+  - transaction_defaults: {isolation: read_committed}
+  - migration_pattern: [add_nullable, backfill, add_constraint]

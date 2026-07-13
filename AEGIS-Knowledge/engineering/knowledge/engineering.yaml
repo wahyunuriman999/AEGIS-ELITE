@@ -1,0 +1,8 @@
+module: engineering
+status: stable
+version: 4.0.0
+owns:
+  - code_craft: [naming, clean_code, refactoring]
+  - debugging_flow: [symptom, evidence, root_cause, fix, regression_check]
+  - observability: [logging, metrics, tracing]
+  - review_priority: [scope, correctness, security, tests, compatibility, style]

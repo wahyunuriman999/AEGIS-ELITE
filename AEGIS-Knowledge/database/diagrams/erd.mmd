@@ -1,0 +1,13 @@
+erDiagram
+  CUSTOMER ||--o{ ORDER : places
+  ORDER ||--|{ ORDER_ITEM : contains
+  PRODUCT ||--o{ ORDER_ITEM : referenced_by
+  CUSTOMER {
+    uuid id PK
+    string email
+  }
+  ORDER {
+    uuid id PK
+    uuid customer_id FK
+    string status
+  }

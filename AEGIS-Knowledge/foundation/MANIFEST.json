@@ -1,0 +1,1 @@
+{"release":"01_Foundation","version":"4.1.0","status":"stable","owns":["philosophy","decision-making","reasoning","communication","risk"],"priority_default":"critical","depends_on_domains":[],"triggers":["bootstrap","conflict_resolution","decision_making","risk_analysis","reflection"]}

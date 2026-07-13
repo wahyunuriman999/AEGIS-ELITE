@@ -1,0 +1,1 @@
+{"release":"03_Architecture","version":"4.1.0","status":"stable","owns":["system_structure","patterns","service_boundaries"],"priority_default":"high","depends_on_domains":["foundation"],"triggers":["architecture_choice","microservices_decision","event_architecture","dependency_injection","architecture_decision_record"]}

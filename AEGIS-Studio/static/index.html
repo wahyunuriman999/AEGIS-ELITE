@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AEGIS Studio — Interactive</title>
+  <style>
+    body{font-family:Inter,Segoe UI,Arial;background:#07111f;color:#e6f4ff;padding:24px}
+    .card{background:#071b2a;padding:18px;border-radius:12px;border:1px solid #12324a;margin-bottom:12px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    button{background:#006b9a;color:white;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    pre{background:#04121a;padding:10px;border-radius:8px;overflow:auto}
+  </style>
+</head>
+<body>
+  <h1>AEGIS Studio — Live</h1>
+  <div class="grid">
+    <div class="card">
+      <h3>Platform Status</h3>
+      <div id="status">loading…</div>
+    </div>
+    <div class="card">
+      <h3>Governance</h3>
+      <div id="governance">loading…</div>
+    </div>
+    <div class="card">
+      <h3>Runs (latest)</h3>
+      <div id="runs">loading…</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Actions</h3>
+    <button id="refresh">Refresh</button>
+  </div>
+
+  <div class="card">
+    <h3>Raw API</h3>
+    <pre id="raw">–</pre>
+  </div>
+
+  <script>
+    const token = '';
+    async function refresh(){
+      try{
+        const s = await fetch('/api/status');
+        const status = await s.json();
+        document.getElementById('status').textContent = status.status + ' • ' + (status.platform || 'AEGIS');
+        document.getElementById('governance').textContent = 'Score: ' + (status.governance_score||status.latest?.score||'n/a');
+
+        let runsHtml = 'none';
+        try{
+          const r = await fetch('/api/runs', {headers: token?{'Authorization':'Bearer '+token}:{}});
+          if(r.status===200){
+            const runs = await r.json();
+            runsHtml = runs.slice(0,5).map(x=>`#${x.id} ${x.task} (${x.status})`).join('\n');
+          } else {
+            runsHtml = 'auth required or no runs';
+          }
+        }catch(e){ runsHtml = 'runs unavailable' }
+
+        document.getElementById('runs').textContent = runsHtml;
+        document.getElementById('raw').textContent = JSON.stringify(status, null, 2);
+      }catch(e){
+        document.getElementById('status').textContent = 'API unavailable';
+        document.getElementById('raw').textContent = String(e);
+      }
+    }
+    document.getElementById('refresh').addEventListener('click', refresh);
+    refresh();
+    setInterval(refresh, 5000);
+  </script>
+</body>
+</html>

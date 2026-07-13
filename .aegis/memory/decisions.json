@@ -1,0 +1,10 @@
+[
+  {
+    "id": "ADR-001",
+    "date": "2026-07-12T09:04:14.650418",
+    "title": "Pipeline run: AEGIS Elite Platform Consolidation",
+    "context": "Automated AEGIS pipeline for task 'AEGIS Elite Platform Consolidation'",
+    "decision": "Proceed with current architecture",
+    "consequences": "Gov scores: Arch=95, Sec=90"
+  }
+]
