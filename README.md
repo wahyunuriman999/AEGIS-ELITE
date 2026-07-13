@@ -39,6 +39,14 @@ python AEGIS-Studio/web_server.py
 
 If you want API auth, set `AEGIS_API_TOKEN` before starting the API and use it as a Bearer token for `/runs` and `/benchmark`.
 
+## Security artifacts
+
+- `security/pip-audit.json`
+- `security/pip-audit-utf8.json`
+- `security/SCAN_SUMMARY.md`
+- `security/bandit-report.json`
+- `security/safety-report.json`
+
 ---
 ## Studio Proxy & Secrets
 

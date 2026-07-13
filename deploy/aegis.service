@@ -1,0 +1,14 @@
+[Unit]
+Description=AEGIS Elite stack (docker-compose)
+After=network.target docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/aegis
+ExecStart=/usr/bin/docker-compose -f /opt/aegis/docker-compose.yml up -d
+ExecStop=/usr/bin/docker-compose -f /opt/aegis/docker-compose.yml down
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  api:
+    build: .
+    container_name: aegis_api
+    environment:
+      - AEGIS_USE_WAITRESS=1
+      - FLASK_ENV=production
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - ./api/state.db:/app/api/state.db
+
+  studio:
+    image: python:3.11-slim
+    container_name: aegis_studio
+    working_dir: /app
+    volumes:
+      - ./AEGIS-Studio:/app/AEGIS-Studio:ro
+    command: bash -c "pip install aiohttp && python AEGIS-Studio/web_server.py"
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  proxy:
+    image: nginx:stable-alpine
+    container_name: aegis_proxy
+    depends_on:
+      - api
+      - studio
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
+    restart: unless-stopped
