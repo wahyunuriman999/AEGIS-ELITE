@@ -27,7 +27,7 @@ policy_mod = load_module("policy_engine", os.path.join(os.path.dirname(__file__)
 voting_mod = load_module("voting_engine", os.path.join(os.path.dirname(__file__), "AEGIS-Consensus", "voting_engine.py"))
 bench_mod = load_module("runner", os.path.join(os.path.dirname(__file__), "AEGIS-Benchmark", "runner.py"))
 memory_mod = load_module("memory_engine", os.path.join(os.path.dirname(__file__), "AEGIS-Memory", "memory_engine.py"))
-orchestrator_mod = load_module("orchestrator", os.path.join(os.path.dirname(__file__), "AEGIS-Workflow", "orchestrator.py"))
+orchestrator_mod = load_module("workflow_engine", os.path.join(os.path.dirname(__file__), "AEGIS-Orchestrator", "workflow_engine.py"))
 plugin_mod = load_module("plugin_manager", os.path.join(os.path.dirname(__file__), "AEGIS-Marketplace", "plugin_manager.py"))
 studio_mod = load_module("web_server", os.path.join(os.path.dirname(__file__), "AEGIS-Studio", "web_server.py"))
 git_hooks_mod = load_module("git_hooks", os.path.join(os.path.dirname(__file__), "AEGIS-Kernel", "git_hooks.py"))
@@ -241,10 +241,10 @@ def main():
     subparsers.add_parser("doctor", help="Check AEGIS environment health")
     subparsers.add_parser("benchmark", help="Run AEGIS vs Standard AI Benchmark Suite")
     
-    # pipeline
-    pipeline_parser = subparsers.add_parser("pipeline", help="Run the full AEGIS Elite unified pipeline")
-    pipeline_parser.add_argument("--task", default="Full Project Analysis", help="Task context description")
-    pipeline_parser.add_argument("--path", default=".", help="Workspace path")
+    # run (Replaces old pipeline)
+    run_parser = subparsers.add_parser("run", help="Run an engineering task via AEGIS Event Bus")
+    run_parser.add_argument("task", help="The engineering task to perform")
+    run_parser.add_argument("--path", default=".", help="Workspace path")
 
     # studio
     studio_parser = subparsers.add_parser("studio", help="Open AEGIS Elite Studio dashboard in browser")
@@ -280,12 +280,12 @@ def main():
         run_doctor()
     elif args.command == "benchmark":
         run_benchmark()
-    elif args.command == "pipeline":
+    elif args.command == "run":
         if orchestrator_mod:
-            o = orchestrator_mod.WorkflowOrchestrator(os.path.dirname(__file__))
-            o.run_pipeline(args.task, args.path)
+            engine = orchestrator_mod.WorkflowEngine(args.path)
+            engine.execute_lifecycle(args.task)
         else:
-            print("[ERROR] Workflow Orchestrator not found.")
+            print("[ERROR] Workflow Engine not found.")
     elif args.command == "studio":
         if studio_mod:
             import webbrowser
