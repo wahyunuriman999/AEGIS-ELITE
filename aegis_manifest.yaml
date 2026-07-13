@@ -149,47 +149,18 @@ external_tools:
     integration: AEGIS-Knowledge
     status: active
 
-knowledge_references:
-  path: AEGIS-Knowledge/References
-  sources:
-    - name: system-prompts-and-models
-      url: https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools
-      purpose: Study system prompts of Cursor, Copilot, Devin
-      status: cloned
-    - name: letta-ai-skills
-      url: https://github.com/letta-ai/skills
-      purpose: Memory management patterns for AEGIS-Memory
-      status: cloned
-    - name: minimax-skills
-      url: https://github.com/MiniMax-AI/skills
-      purpose: Agent skill patterns
-      status: cloned
-    - name: cre-agent-skills
-      url: https://github.com/ahacker-1/cre-agent-skills
-      purpose: Agent skill implementations
-      status: cloned
-    - name: AI-research-skills
-      url: https://github.com/orchestra-research/AI-research-SKILLs
-      purpose: Research-grade AI skill patterns
-      status: cloned
-    - name: PraisonAI
-      url: https://github.com/MervinPraison/PraisonAI
-      purpose: Multi-agent framework reference
-      status: cloned
-    - name: AutoGPT
-      url: https://github.com/Significant-Gravitas/AutoGPT
-      purpose: Autonomous agent loop architecture (docs only - path limit)
+knowledge_packs:
+  path: AEGIS-Knowledge/Packs
+  categories:
+    - name: Architectures
+      description: Core patterns for agent architectures (Autonomous, Local, Multi-Agent)
       status: active
-      note: "Downloaded via GitHub API (README, AGENTS.md, CONTRIBUTING.md, repo_structure.json)"
-    - name: hermes-agent
-      url: https://github.com/NousResearch/hermes-agent
-      purpose: Local LLM agent architecture
-      status: cloned
-    - name: firecrawl
-      url: https://github.com/mendableai/firecrawl
-      purpose: Web doc ingestion reference (sparse clone)
-      status: cloned
-    - name: notebooklm-mcp-cli
-      url: https://github.com/jacob-bd/notebooklm-mcp-cli
-      purpose: NotebookLM-style RAG MCP CLI
-      status: cloned
+    - name: Skills
+      description: Tools, functions, and specific capabilities extracted from various repos
+      status: active
+    - name: Tools
+      description: External tooling integrations (Web Scraping, MCP)
+      status: active
+    - name: Prompts
+      description: Master system prompts and context injection templates
+      status: active
