@@ -1,0 +1,1099 @@
+{
+  "dependencies": [
+    {
+      "name": "aiofiles",
+      "version": "24.1.0",
+      "vulns": []
+    },
+    {
+      "name": "aiohappyeyeballs",
+      "version": "2.7.1",
+      "vulns": []
+    },
+    {
+      "name": "aiohttp",
+      "version": "3.14.1",
+      "vulns": []
+    },
+    {
+      "name": "aiosignal",
+      "version": "1.4.0",
+      "vulns": []
+    },
+    {
+      "name": "aiosqlite",
+      "version": "0.21.0",
+      "vulns": []
+    },
+    {
+      "name": "alembic",
+      "version": "1.18.5",
+      "vulns": []
+    },
+    {
+      "name": "annotated-doc",
+      "version": "0.0.4",
+      "vulns": []
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.7.0",
+      "vulns": []
+    },
+    {
+      "name": "anyio",
+      "version": "4.13.0",
+      "vulns": []
+    },
+    {
+      "name": "appdirs",
+      "version": "1.4.4",
+      "vulns": []
+    },
+    {
+      "name": "apscheduler",
+      "version": "3.11.2",
+      "vulns": []
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0",
+      "vulns": []
+    },
+    {
+      "name": "authlib",
+      "version": "1.7.2",
+      "vulns": []
+    },
+    {
+      "name": "backoff",
+      "version": "2.2.1",
+      "vulns": []
+    },
+    {
+      "name": "bandit",
+      "version": "1.9.4",
+      "vulns": []
+    },
+    {
+      "name": "bcrypt",
+      "version": "5.0.0",
+      "vulns": []
+    },
+    {
+      "name": "blinker",
+      "version": "1.9.0",
+      "vulns": []
+    },
+    {
+      "name": "boolean-py",
+      "version": "5.0",
+      "vulns": []
+    },
+    {
+      "name": "build",
+      "version": "1.5.0",
+      "vulns": []
+    },
+    {
+      "name": "cachecontrol",
+      "version": "0.14.4",
+      "vulns": []
+    },
+    {
+      "name": "cel-python",
+      "version": "0.5.0",
+      "vulns": []
+    },
+    {
+      "name": "certifi",
+      "version": "2026.4.22",
+      "vulns": []
+    },
+    {
+      "name": "cffi",
+      "version": "2.1.0",
+      "vulns": []
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.4.7",
+      "vulns": []
+    },
+    {
+      "name": "chromadb",
+      "version": "1.1.1",
+      "vulns": [
+        {
+          "id": "PYSEC-2026-311",
+          "fix_versions": [],
+          "aliases": [
+            "GHSA-f4j7-r4q5-qw2c",
+            "CVE-2026-45829"
+          ],
+          "description": "A pre-authentication, code injection vulnerability in version 1.0.0 or later of the ChromaDB Python project allows an unauthenticated attacker to run arbitrary code on the server by sending a malicious model repository and trust_remote_code set to true in the\u00a0/api/v2/tenants/{tenant}/databases/{db}/collections endpoint."
+        }
+      ]
+    },
+    {
+      "name": "click",
+      "version": "8.4.2",
+      "vulns": []
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6",
+      "vulns": []
+    },
+    {
+      "name": "crewai",
+      "version": "1.15.2",
+      "vulns": []
+    },
+    {
+      "name": "crewai-cli",
+      "version": "1.15.2",
+      "vulns": []
+    },
+    {
+      "name": "crewai-core",
+      "version": "1.15.2",
+      "vulns": []
+    },
+    {
+      "name": "cryptography",
+      "version": "49.0.0",
+      "vulns": []
+    },
+    {
+      "name": "cyclonedx-python-lib",
+      "version": "11.11.0",
+      "vulns": []
+    },
+    {
+      "name": "defusedxml",
+      "version": "0.7.1",
+      "vulns": []
+    },
+    {
+      "name": "deprecation",
+      "version": "2.1.0",
+      "vulns": []
+    },
+    {
+      "name": "distro",
+      "version": "1.9.0",
+      "vulns": []
+    },
+    {
+      "name": "docstring-parser",
+      "version": "0.18.0",
+      "vulns": []
+    },
+    {
+      "name": "dparse",
+      "version": "0.6.4",
+      "vulns": []
+    },
+    {
+      "name": "durationpy",
+      "version": "0.10",
+      "vulns": []
+    },
+    {
+      "name": "et-xmlfile",
+      "version": "2.0.0",
+      "vulns": []
+    },
+    {
+      "name": "fastapi",
+      "version": "0.136.1",
+      "vulns": []
+    },
+    {
+      "name": "fastuuid",
+      "version": "0.14.0",
+      "vulns": []
+    },
+    {
+      "name": "filelock",
+      "version": "3.29.7",
+      "vulns": []
+    },
+    {
+      "name": "firecrawl-py",
+      "version": "4.32.0",
+      "vulns": []
+    },
+    {
+      "name": "flake8",
+      "version": "7.3.0",
+      "vulns": []
+    },
+    {
+      "name": "flask",
+      "version": "3.1.3",
+      "vulns": []
+    },
+    {
+      "name": "flatbuffers",
+      "version": "25.12.19",
+      "vulns": []
+    },
+    {
+      "name": "frozenlist",
+      "version": "1.8.0",
+      "vulns": []
+    },
+    {
+      "name": "fsspec",
+      "version": "2026.6.0",
+      "vulns": []
+    },
+    {
+      "name": "google-re2",
+      "version": "1.1.20251105",
+      "vulns": []
+    },
+    {
+      "name": "googleapis-common-protos",
+      "version": "1.75.0",
+      "vulns": []
+    },
+    {
+      "name": "greenlet",
+      "version": "3.5.3",
+      "vulns": []
+    },
+    {
+      "name": "grpcio",
+      "version": "1.82.1",
+      "vulns": []
+    },
+    {
+      "name": "gunicorn",
+      "version": "26.0.0",
+      "vulns": []
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "vulns": []
+    },
+    {
+      "name": "hf-xet",
+      "version": "1.5.1",
+      "vulns": []
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9",
+      "vulns": []
+    },
+    {
+      "name": "httptools",
+      "version": "0.7.1",
+      "vulns": []
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "vulns": []
+    },
+    {
+      "name": "httpx-sse",
+      "version": "0.4.3",
+      "vulns": []
+    },
+    {
+      "name": "huggingface-hub",
+      "version": "1.22.0",
+      "vulns": []
+    },
+    {
+      "name": "idna",
+      "version": "3.13",
+      "vulns": [
+        {
+          "id": "PYSEC-2026-215",
+          "fix_versions": [
+            "3.15"
+          ],
+          "aliases": [
+            "CVE-2026-45409",
+            "GHSA-65pc-fj4g-8rjx"
+          ],
+          "description": "This is the same issue as CVE-2024-3651, however the original remediation in 2024 was not a complete fix. Payloads such as `\"\\u0660\" * N` or `\"\\u30fb\" * N + \"\\u6f22\"` utilize the `valid_contexto` function prior to length rejection, and for high values of `N` will take a long time to process.  ### Impact A specially crafted argument to the `idna.encode()` function could consume significant resources. This may lead to a denial-of-service.  ### Patches Starting in version 3.14, the function rejects long inputs as soon as practicable prior to any further processing to minimize resource consumption. In version 3.15, this approach was extended to lesser used alternate functions (i.e. per-label conversions and codec support).  ### Workarounds Domain names cannot exceed 253 characters in length, if this length limit is enforced prior to passing the domain to the `idna.encode()` function it should no longer consume significant resources. This is triggered by arbitrarily large inputs that would not occur in normal usage, but may be passed to the library assuming there is no preliminary input validation by the higher-level application."
+        },
+        {
+          "id": "PYSEC-2026-215",
+          "fix_versions": [
+            "3.15"
+          ],
+          "aliases": [
+            "CVE-2026-45409",
+            "GHSA-65pc-fj4g-8rjx"
+          ],
+          "description": "Internationalized Domain Names in Applications (IDNA) for Python provides support for Internationalized Domain Names in Applications (IDNA) and Unicode IDNA Compatibility Processing. In versions prior to 3.15, payloads such as `\"\\u0660\" * N` or `\"\\u30fb\" * N + \"\\u6f22\"` utilize the `valid_contexto` function prior to length rejection, and for high values of `N` will take a long time to process. This is the same issue as CVE-2024-3651, however the original remediation in 2024 was not a complete fix. A specially crafted argument to the `idna.encode()` function could consume significant resources. This may lead to a denial-of-service. Starting in version 3.14, the function rejects long inputs as soon as practicable prior to any further processing to minimize resource consumption. In version 3.15, this approach was extended to lesser used alternate functions (i.e. per-label conversions and codec support). A workaround is available. Domain names cannot exceed 253 characters in length. If this length limit is enforced prior to passing the domain to the `idna.encode()` function, it should no longer consume significant resources. This is triggered by arbitrarily large inputs that would not occur in normal usage, but may be passed to the library assuming there is no preliminary input validation by the higher-level application."
+        }
+      ]
+    },
+    {
+      "name": "importlib-metadata",
+      "version": "8.9.0",
+      "vulns": []
+    },
+    {
+      "name": "importlib-resources",
+      "version": "7.1.0",
+      "vulns": []
+    },
+    {
+      "name": "instructor",
+      "version": "1.15.4",
+      "vulns": []
+    },
+    {
+      "name": "itsdangerous",
+      "version": "2.2.0",
+      "vulns": []
+    },
+    {
+      "name": "jinja2",
+      "version": "3.1.6",
+      "vulns": []
+    },
+    {
+      "name": "jiter",
+      "version": "0.14.0",
+      "vulns": []
+    },
+    {
+      "name": "jmespath",
+      "version": "1.1.0",
+      "vulns": []
+    },
+    {
+      "name": "joblib",
+      "version": "1.5.3",
+      "vulns": []
+    },
+    {
+      "name": "joserfc",
+      "version": "1.7.3",
+      "vulns": []
+    },
+    {
+      "name": "json-repair",
+      "version": "0.25.3",
+      "vulns": []
+    },
+    {
+      "name": "json5",
+      "version": "0.10.0",
+      "vulns": []
+    },
+    {
+      "name": "jsonref",
+      "version": "1.1.0",
+      "vulns": []
+    },
+    {
+      "name": "jsonschema",
+      "version": "4.26.0",
+      "vulns": []
+    },
+    {
+      "name": "jsonschema-specifications",
+      "version": "2025.9.1",
+      "vulns": []
+    },
+    {
+      "name": "kubernetes",
+      "version": "36.0.2",
+      "vulns": []
+    },
+    {
+      "name": "lance-namespace",
+      "version": "0.9.0",
+      "vulns": []
+    },
+    {
+      "name": "lance-namespace-urllib3-client",
+      "version": "0.9.0",
+      "vulns": []
+    },
+    {
+      "name": "lancedb",
+      "version": "0.30.0",
+      "vulns": []
+    },
+    {
+      "name": "lark",
+      "version": "1.3.1",
+      "vulns": []
+    },
+    {
+      "name": "license-expression",
+      "version": "30.4.4",
+      "vulns": []
+    },
+    {
+      "name": "linkify-it-py",
+      "version": "2.1.0",
+      "vulns": []
+    },
+    {
+      "name": "litellm",
+      "version": "1.91.3",
+      "vulns": []
+    },
+    {
+      "name": "mako",
+      "version": "1.3.12",
+      "vulns": []
+    },
+    {
+      "name": "markdown",
+      "version": "3.10.2",
+      "vulns": []
+    },
+    {
+      "name": "markdown-it-py",
+      "version": "4.2.0",
+      "vulns": []
+    },
+    {
+      "name": "markupsafe",
+      "version": "3.0.3",
+      "vulns": []
+    },
+    {
+      "name": "marshmallow",
+      "version": "4.3.0",
+      "vulns": []
+    },
+    {
+      "name": "mccabe",
+      "version": "0.7.0",
+      "vulns": []
+    },
+    {
+      "name": "mcp",
+      "version": "1.26.0",
+      "vulns": []
+    },
+    {
+      "name": "mdit-py-plugins",
+      "version": "0.6.1",
+      "vulns": []
+    },
+    {
+      "name": "mdurl",
+      "version": "0.1.2",
+      "vulns": []
+    },
+    {
+      "name": "mmh3",
+      "version": "5.2.1",
+      "vulns": []
+    },
+    {
+      "name": "msgpack",
+      "version": "1.2.1",
+      "vulns": []
+    },
+    {
+      "name": "multidict",
+      "version": "6.7.1",
+      "vulns": []
+    },
+    {
+      "name": "nest-asyncio",
+      "version": "1.6.0",
+      "vulns": []
+    },
+    {
+      "name": "nltk",
+      "version": "3.10.0",
+      "vulns": []
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.4",
+      "vulns": []
+    },
+    {
+      "name": "oauthlib",
+      "version": "3.3.1",
+      "vulns": []
+    },
+    {
+      "name": "onnxruntime",
+      "version": "1.27.0",
+      "vulns": []
+    },
+    {
+      "name": "openai",
+      "version": "2.44.0",
+      "vulns": []
+    },
+    {
+      "name": "openpyxl",
+      "version": "3.1.5",
+      "vulns": []
+    },
+    {
+      "name": "opentelemetry-api",
+      "version": "1.42.1",
+      "vulns": []
+    },
+    {
+      "name": "opentelemetry-exporter-otlp-proto-common",
+      "version": "1.42.1",
+      "vulns": []
+    },
+    {
+      "name": "opentelemetry-exporter-otlp-proto-grpc",
+      "version": "1.42.1",
+      "vulns": []
+    },
+    {
+      "name": "opentelemetry-exporter-otlp-proto-http",
+      "version": "1.42.1",
+      "vulns": []
+    },
+    {
+      "name": "opentelemetry-proto",
+      "version": "1.42.1",
+      "vulns": []
+    },
+    {
+      "name": "opentelemetry-sdk",
+      "version": "1.42.1",
+      "vulns": []
+    },
+    {
+      "name": "opentelemetry-semantic-conventions",
+      "version": "0.63b1",
+      "vulns": []
+    },
+    {
+      "name": "orjson",
+      "version": "3.11.9",
+      "vulns": []
+    },
+    {
+      "name": "overrides",
+      "version": "7.7.0",
+      "vulns": []
+    },
+    {
+      "name": "packageurl-python",
+      "version": "0.17.6",
+      "vulns": []
+    },
+    {
+      "name": "packaging",
+      "version": "26.2",
+      "vulns": []
+    },
+    {
+      "name": "pandas",
+      "version": "3.0.2",
+      "vulns": []
+    },
+    {
+      "name": "pdfminer-six",
+      "version": "20260107",
+      "vulns": []
+    },
+    {
+      "name": "pdfplumber",
+      "version": "0.11.10",
+      "vulns": []
+    },
+    {
+      "name": "pendulum",
+      "version": "3.2.0",
+      "vulns": []
+    },
+    {
+      "name": "pillow",
+      "version": "12.3.0",
+      "vulns": []
+    },
+    {
+      "name": "pip",
+      "version": "26.1.2",
+      "vulns": []
+    },
+    {
+      "name": "pip-api",
+      "version": "0.0.34",
+      "vulns": []
+    },
+    {
+      "name": "pip-audit",
+      "version": "2.10.1",
+      "vulns": []
+    },
+    {
+      "name": "pip-requirements-parser",
+      "version": "32.0.1",
+      "vulns": []
+    },
+    {
+      "name": "platformdirs",
+      "version": "4.10.0",
+      "vulns": []
+    },
+    {
+      "name": "portalocker",
+      "version": "2.7.0",
+      "vulns": []
+    },
+    {
+      "name": "posthog",
+      "version": "5.4.0",
+      "vulns": []
+    },
+    {
+      "name": "praisonai",
+      "version": "4.6.144",
+      "vulns": []
+    },
+    {
+      "name": "praisonai-bot",
+      "version": "0.0.28",
+      "vulns": []
+    },
+    {
+      "name": "praisonai-code",
+      "version": "0.0.43",
+      "vulns": []
+    },
+    {
+      "name": "praisonaiagents",
+      "version": "1.6.147",
+      "vulns": [
+        {
+          "id": "PYSEC-2026-2946",
+          "fix_versions": [
+            "4.5.128"
+          ],
+          "aliases": [
+            "GHSA-ffp3-3562-8cv3",
+            "CVE-2026-56074"
+          ],
+          "description": "## Summary  The approval system in PraisonAI Agents caches tool approval decisions by tool name only, not by invocation arguments. Once a user approves `execute_command` for any command (e.g., `ls -la`), all subsequent `execute_command` calls in that execution context bypass the approval prompt entirely. Combined with `os.environ.copy()` passing all process environment variables to subprocesses, this allows an LLM agent (potentially via prompt injection) to silently exfiltrate API keys and credentials without further user consent.  ## Details  The `require_approval` decorator in `src/praisonai-agents/praisonaiagents/approval/__init__.py:176-178` checks approval status by tool name only:  ```python @wraps(func) def wrapper(*args, **kwargs):     if is_already_approved(tool_name):   # line 177 \u2014 checks only tool_name         return func(*args, **kwargs)     # line 178 \u2014 bypasses ALL approval ```  The `mark_approved` function in `registry.py:144-147` stores only the tool name string:  ```python def mark_approved(self, tool_name: str) -> None:     approved = self._approved_context.get(set())     approved.add(tool_name)              # stores \"execute_command\", not args     self._approved_context.set(approved) ```  The approval context is never cleared during agent execution \u2014 `clear_approved()` exists (`registry.py:152`) but is never called in the agent's tool execution path (`agent/tool_execution.py`).  Meanwhile, the `ConsoleBackend` UI at `backends.py:95-96` misleads the user:  ```python return Confirm.ask(     f\"Do you want to execute this {request.risk_level} risk tool?\",     # \"this\" implies per-invocation approval ) ```  The UI displays the specific command arguments (lines 81-85), creating a reasonable expectation that the user is approving only that specific invocation.  Additionally, `shell_tools.py:77` passes the full process environment to every subprocess:  ```python process_env = os.environ.copy()  # includes OPENAI_API_KEY, etc. ```  There is no command filtering, blocklist, or environment variable sanitization in the shell tools module.  ## PoC  ```python from praisonaiagents import Agent from praisonaiagents.tools.shell_tools import execute_command  # Step 1: Create agent with shell tool agent = Agent(     name=\"worker\",     instructions=\"You are a helpful assistant.\",     tools=[execute_command] )  # Step 2: Agent requests benign command \u2014 user sees Rich panel: #   Function: execute_command #   Risk Level: CRITICAL #   Arguments: #     command: ls -la #   \"Do you want to execute this critical risk tool?\" [y/N] # User approves \u2192 mark_approved(\"execute_command\") is called  # Step 3: All subsequent execute_command calls bypass approval silently: # execute_command(command=\"env\") #   \u2192 returns ALL environment variables (OPENAI_API_KEY, AWS_SECRET_ACCESS_KEY, etc.) #   \u2192 NO approval prompt shown  # Step 4: Targeted extraction also bypasses approval: # execute_command(command=\"printenv OPENAI_API_KEY\") #   \u2192 returns the specific API key #   \u2192 NO approval prompt shown  # Verification: check the approval cache from praisonaiagents.approval import is_already_approved # After approving \"ls -la\": # is_already_approved(\"execute_command\") \u2192 True # Any execute_command call now returns immediately at __init__.py:177-178 ```  ## Impact  - **Secret exfiltration**: An LLM agent (or one subjected to prompt injection) can dump all process environment variables after a single benign command approval. Common secrets include `OPENAI_API_KEY`, `AWS_SECRET_ACCESS_KEY`, `DATABASE_URL`, and any other credentials passed via environment. - **Misleading consent UI**: The console prompt displays specific arguments and uses language (\"this tool\") that implies per-invocation consent, but the system grants session-wide blanket approval. - **No expiration or scope**: The approval cache uses a `ContextVar` that persists for the entire agent execution context with no timeout, no command-count limit, and no clearing between tool calls. - **No environment filtering**: `os.environ.copy()` passes every environment variable to subprocesses without filtering sensitive patterns.  ## Recommended Fix  1. **Per-invocation approval for critical tools** \u2014 store a hash of `(tool_name, arguments)` instead of just `tool_name`, or require re-approval for each invocation of critical-risk tools:  ```python # In registry.py \u2014 change mark_approved/is_already_approved: import hashlib, json  def mark_approved(self, tool_name: str, arguments: dict = None) -> None:     approved = self._approved_context.get(set())     risk = self._risk_levels.get(tool_name)     if risk == \"critical\" and arguments:         key = f\"{tool_name}:{hashlib.sha256(json.dumps(arguments, sort_keys=True).encode()).hexdigest()}\"     else:         key = tool_name     approved.add(key)     self._approved_context.set(approved)  def is_already_approved(self, tool_name: str, arguments: dict = None) -> bool:     approved = self._approved_context.get(set())     risk = self._risk_levels.get(tool_name)     if risk == \"critical\" and arguments:         key = f\"{tool_name}:{hashlib.sha256(json.dumps(arguments, sort_keys=True).encode()).hexdigest()}\"         return key in approved     return tool_name in approved ```  2. **Filter environment variables** in `shell_tools.py`:  ```python SENSITIVE_PATTERNS = ('_KEY', '_SECRET', '_TOKEN', '_PASSWORD', '_CREDENTIAL')  process_env = {     k: v for k, v in os.environ.items()     if not any(p in k.upper() for p in SENSITIVE_PATTERNS) } if env:     process_env.update(env) ```"
+        }
+      ]
+    },
+    {
+      "name": "propcache",
+      "version": "0.5.2",
+      "vulns": []
+    },
+    {
+      "name": "protobuf",
+      "version": "6.33.6",
+      "vulns": []
+    },
+    {
+      "name": "py-serializable",
+      "version": "2.1.0",
+      "vulns": []
+    },
+    {
+      "name": "pyarrow",
+      "version": "24.0.0",
+      "vulns": []
+    },
+    {
+      "name": "pybase64",
+      "version": "1.4.3",
+      "vulns": []
+    },
+    {
+      "name": "pycodestyle",
+      "version": "2.14.0",
+      "vulns": []
+    },
+    {
+      "name": "pycparser",
+      "version": "3.0",
+      "vulns": []
+    },
+    {
+      "name": "pydantic",
+      "version": "2.12.5",
+      "vulns": []
+    },
+    {
+      "name": "pydantic-core",
+      "version": "2.41.5",
+      "vulns": []
+    },
+    {
+      "name": "pydantic-settings",
+      "version": "2.10.1",
+      "vulns": []
+    },
+    {
+      "name": "pyflakes",
+      "version": "3.4.0",
+      "vulns": []
+    },
+    {
+      "name": "pygments",
+      "version": "2.20.0",
+      "vulns": []
+    },
+    {
+      "name": "pyjwt",
+      "version": "2.13.0",
+      "vulns": []
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.2",
+      "vulns": []
+    },
+    {
+      "name": "pypdfium2",
+      "version": "5.11.0",
+      "vulns": []
+    },
+    {
+      "name": "pypika",
+      "version": "0.51.1",
+      "vulns": []
+    },
+    {
+      "name": "pyproject-hooks",
+      "version": "1.2.0",
+      "vulns": []
+    },
+    {
+      "name": "python-dateutil",
+      "version": "2.9.0.post0",
+      "vulns": []
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.2.2",
+      "vulns": []
+    },
+    {
+      "name": "python-multipart",
+      "version": "0.0.32",
+      "vulns": []
+    },
+    {
+      "name": "pywin32",
+      "version": "312",
+      "vulns": []
+    },
+    {
+      "name": "pyyaml",
+      "version": "6.0.3",
+      "vulns": []
+    },
+    {
+      "name": "redis",
+      "version": "7.4.0",
+      "vulns": []
+    },
+    {
+      "name": "referencing",
+      "version": "0.37.0",
+      "vulns": []
+    },
+    {
+      "name": "regex",
+      "version": "2026.1.15",
+      "vulns": []
+    },
+    {
+      "name": "requests",
+      "version": "2.33.1",
+      "vulns": []
+    },
+    {
+      "name": "requests-oauthlib",
+      "version": "2.0.0",
+      "vulns": []
+    },
+    {
+      "name": "rich",
+      "version": "14.3.4",
+      "vulns": []
+    },
+    {
+      "name": "rpds-py",
+      "version": "2026.6.3",
+      "vulns": []
+    },
+    {
+      "name": "ruamel-yaml",
+      "version": "0.19.1",
+      "vulns": []
+    },
+    {
+      "name": "safety",
+      "version": "3.8.1",
+      "vulns": []
+    },
+    {
+      "name": "safety-schemas",
+      "version": "0.0.16",
+      "vulns": []
+    },
+    {
+      "name": "shellingham",
+      "version": "1.5.4",
+      "vulns": []
+    },
+    {
+      "name": "six",
+      "version": "1.17.0",
+      "vulns": []
+    },
+    {
+      "name": "sniffio",
+      "version": "1.3.1",
+      "vulns": []
+    },
+    {
+      "name": "sortedcontainers",
+      "version": "2.4.0",
+      "vulns": []
+    },
+    {
+      "name": "sqlalchemy",
+      "version": "2.0.51",
+      "vulns": []
+    },
+    {
+      "name": "sse-starlette",
+      "version": "3.4.5",
+      "vulns": []
+    },
+    {
+      "name": "starlette",
+      "version": "1.0.0",
+      "vulns": [
+        {
+          "id": "PYSEC-2026-161",
+          "fix_versions": [
+            "1.0.1"
+          ],
+          "aliases": [
+            "CVE-2026-48710",
+            "GHSA-86qp-5c8j-p5mr",
+            "X41-2026-002"
+          ],
+          "description": "Starlette reconstructs the requested URL based on the HTTP Host request header and requested path, but does not perform any validation of the Host header value. This allows attackers to inject paths into the host part, prepending the actual path. However, routing in Starlette is based on the actual request path. This inconsistent interpretation of HTTP requests may lead to issues such as authentication bypass when the authentication depends on the reconstructed URL\u2019s path."
+        },
+        {
+          "id": "PYSEC-2026-161",
+          "fix_versions": [
+            "1.0.1"
+          ],
+          "aliases": [
+            "X41-2026-002",
+            "CVE-2026-48710",
+            "GHSA-86qp-5c8j-p5mr"
+          ],
+          "description": "### Summary In affected versions, the HTTP `Host` request header was not validated before being used to reconstruct `request.url`. Because the routing algorithm relies on the raw HTTP path while `request.url` is rebuilt from the `Host` header, a malformed header could make `request.url.path` differ from the path that was actually requested. Middleware and endpoints that apply security restrictions based on `request.url` (rather than the raw `scope` path) could therefore be bypassed.  ### Details When a client requests `http://example.com/foo`, it sends:  ```http GET /foo HTTP/1.1 Host: example.com ```  Affected versions reconstructed the URL by concatenating `http://{host}{path}` and re-parsing the result. The `Host` value is only valid as a `uri-host [ \":\" port ]` per [RFC 9112 \u00a73.2](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2-6), where `uri-host` follows the restricted `host` grammar of [RFC 3986 \u00a73.2.2](https://www.rfc-editor.org/rfc/rfc3986.html#section-3.2.2). When it contains characters outside that grammar - notably `/`, `?`, or `#` - those characters move the path/query/fragment boundaries during re-parsing, so the parsed `request.url.path` no longer matches the path the server actually received. For example:  ```http GET /foo HTTP/1.1 Host: example.com/abc?bar= ```  reconstructs to `http://example.com/abc?bar=/foo`, whose parsed `path` is `/abc` - even though routing used the real path `/foo`. The router still dispatches to `/foo` and the endpoint executes, but any middleware or code that reads `request.url.path` sees `/abc`, so path-based authorization checks can be bypassed.  ### Impact Any application running an affected version that relies on `request.url` (or `request.url.path`) for security-sensitive decisions is affected. The most common case is middleware that gates access to certain path prefixes based on `request.url.path`. Deployments fronted by a proxy or load balancer are mitigated only if that proxy rejects or normalizes the malformed `Host` header before forwarding and the application does not trust attacker-controlled host headers (e.g. `X-Forwarded-Host`) elsewhere.  ### Mitigation Upgrade to a patched version, which validates the `Host` header against the grammar of [RFC 9112 \u00a73.2](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.2-6) / [RFC 3986 \u00a73.2.2](https://www.rfc-editor.org/rfc/rfc3986.html#section-3.2.2) when constructing `request.url` and falls back to `scope[\"server\"]` for malformed values."
+        },
+        {
+          "id": "PYSEC-2026-249",
+          "fix_versions": [
+            "1.3.1"
+          ],
+          "aliases": [
+            "GHSA-82w8-qh3p-5jfq",
+            "CVE-2026-54283"
+          ],
+          "description": "Starlette is a lightweight ASGI framework/toolkit. From 0.4.1 until 1.3.1, request.form() accepts max_fields and max_part_size to bound resource consumption while parsing form data. These limits are enforced for multipart/form-data, but silently ignored for application/x-www-form-urlencoded. An unauthenticated attacker can therefore send a urlencoded body with an arbitrarily large number of fields or an arbitrarily large field, even when the application configured limits it believed would apply. This vulnerability is fixed in 1.3.1."
+        },
+        {
+          "id": "PYSEC-2026-248",
+          "fix_versions": [
+            "1.3.0"
+          ],
+          "aliases": [
+            "CVE-2026-54282",
+            "GHSA-jp82-jpqv-5vv3"
+          ],
+          "description": "Starlette is a lightweight ASGI framework/toolkit. Prior to 1.3.0, the HTTP request path is not validated before being used to reconstruct request.url. Because request.url is rebuilt by concatenating {scheme}://{host}{path} and re-parsing the result, a path that does not begin with / (for example @google.com) moves the authority boundary during re-parsing, so request.url.hostname and request.url.netloc become attacker-controlled. Code that reads request.url.hostname (rather than the Host header or scope) can therefore be misled into trusting an attacker-supplied host. This vulnerability is fixed in 1.3.0."
+        },
+        {
+          "id": "PYSEC-2026-2281",
+          "fix_versions": [
+            "1.1.0"
+          ],
+          "aliases": [
+            "GHSA-wqp7-x3pw-xc5r",
+            "CVE-2026-48818"
+          ],
+          "description": "Starlette is a lightweight ASGI framework/toolkit. In versions 1.0.1 and earlier, StaticFiles on Windows is vulnerable to SSRF. An UNC path such as \\\\attacker.com\\share can cause os.path.realpath to initiate an outbound SMB connection before the path is rejected, exposing the service account\u2019s NTLMv2 credentials for offline cracking or relay even though the HTTP response is only a 404. The issue affects default follow_symlink=False deployments, including frameworks built on Starlette such as FastAPI; POSIX systems and follow_symlink=True are unaffected. The issue is fixed in 1.1.0."
+        },
+        {
+          "id": "PYSEC-2026-2280",
+          "fix_versions": [
+            "1.1.0"
+          ],
+          "aliases": [
+            "GHSA-x746-7m8f-x49c",
+            "CVE-2026-48817"
+          ],
+          "description": "Starlette is a lightweight ASGI framework/toolkit. In versions 1.0.1 and below, when dispatching a request, HTTPEndpoint selects the handler by lowercasing the HTTP method and looking it up as an attribute with getattr, without restricting the lookup to a known set of HTTP verbs. When an HTTPEndpoint subclass is registered through Route(...) without an explicit methods= argument, the route does not constrain the method and every method reaches the endpoint. If a non-standard HTTP method whose lowercased name matches an attribute on the endpoint subclass reaches the endpoint, that attribute is invoked as if it were a request handler. An attacker can use this to reach methods that were never meant to be HTTP handlers, such as internal helpers, without the authorization checks applied by the intended public handler. An application (including Starlette-based frameworks like FastAPI) is affected if it registers an HTTPEndpoint subclass via Route(...) without explicitly setting methods=, and that subclass includes extra methods named like non-standard HTTP verbs that take one request argument and return a response. This issue has been fixed in version 1.1.0."
+        }
+      ]
+    },
+    {
+      "name": "stevedore",
+      "version": "5.9.0",
+      "vulns": []
+    },
+    {
+      "name": "structlog",
+      "version": "25.5.0",
+      "vulns": []
+    },
+    {
+      "name": "tenacity",
+      "version": "9.1.4",
+      "vulns": []
+    },
+    {
+      "name": "textual",
+      "version": "8.2.8",
+      "vulns": []
+    },
+    {
+      "name": "tiktoken",
+      "version": "0.13.0",
+      "vulns": []
+    },
+    {
+      "name": "tokenizers",
+      "version": "0.23.1",
+      "vulns": []
+    },
+    {
+      "name": "toml",
+      "version": "0.10.2",
+      "vulns": []
+    },
+    {
+      "name": "tomli",
+      "version": "2.4.1",
+      "vulns": []
+    },
+    {
+      "name": "tomli-w",
+      "version": "1.2.0",
+      "vulns": []
+    },
+    {
+      "name": "tomlkit",
+      "version": "0.15.0",
+      "vulns": []
+    },
+    {
+      "name": "tqdm",
+      "version": "4.68.4",
+      "vulns": []
+    },
+    {
+      "name": "truststore",
+      "version": "0.10.4",
+      "vulns": []
+    },
+    {
+      "name": "typer",
+      "version": "0.25.1",
+      "vulns": []
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.15.0",
+      "vulns": []
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.2",
+      "vulns": []
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.2",
+      "vulns": []
+    },
+    {
+      "name": "tzlocal",
+      "version": "5.3.1",
+      "vulns": []
+    },
+    {
+      "name": "uc-micro-py",
+      "version": "2.0.0",
+      "vulns": []
+    },
+    {
+      "name": "urllib3",
+      "version": "2.7.0",
+      "vulns": []
+    },
+    {
+      "name": "uv",
+      "version": "0.11.28",
+      "vulns": []
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.46.0",
+      "vulns": []
+    },
+    {
+      "name": "waitress",
+      "version": "3.0.2",
+      "vulns": []
+    },
+    {
+      "name": "watchfiles",
+      "version": "1.1.1",
+      "vulns": []
+    },
+    {
+      "name": "websocket-client",
+      "version": "1.9.0",
+      "vulns": []
+    },
+    {
+      "name": "websockets",
+      "version": "16.0",
+      "vulns": []
+    },
+    {
+      "name": "werkzeug",
+      "version": "3.1.8",
+      "vulns": []
+    },
+    {
+      "name": "yarl",
+      "version": "1.24.2",
+      "vulns": []
+    },
+    {
+      "name": "zipp",
+      "version": "4.1.0",
+      "vulns": []
+    }
+  ],
+  "fixes": []
+}
