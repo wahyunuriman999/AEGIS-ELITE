@@ -1,0 +1,6 @@
+graph LR
+  Client --> Gateway[API Gateway: authn/authz + rate limit]
+  Gateway --> Service[Service: validation]
+  Service --> Breaker[Circuit Breaker]
+  Breaker --> Downstream[(Downstream Dependency)]
+  Service --> Queue[(Async Queue)]

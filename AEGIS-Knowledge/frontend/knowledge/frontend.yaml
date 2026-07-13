@@ -1,0 +1,9 @@
+module: frontend
+status: stable
+version: 1.0.0
+owns:
+  - component_layers: [presentation, container, hooks, services]
+  - state_scope_order: [local, lifted, shared, server-cache, global]
+  - accessibility_baseline: [semantic-html, keyboard-nav, aria-only-when-needed, color-contrast, focus-management]
+  - performance_priority: [bundle-size, render-count, main-thread-blocking, image-weight, network-waterfall]
+  - review_priority: [correctness, accessibility, performance, consistency, style]

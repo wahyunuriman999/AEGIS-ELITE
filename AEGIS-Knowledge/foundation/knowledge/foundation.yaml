@@ -1,0 +1,15 @@
+module: foundation
+status: stable
+version: 4.0.0
+owns:
+  - decision_priority_order:
+      - correctness
+      - security
+      - recoverability
+      - backward_compatibility
+      - minimal_diff
+      - performance
+      - maintainability
+      - convention
+  - verification_states: [verified, reasoned, assumed]
+  - risk_levels: [low, medium, high]

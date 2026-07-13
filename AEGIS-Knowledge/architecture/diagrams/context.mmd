@@ -1,0 +1,7 @@
+graph TD
+  User[User] --> API[API Gateway]
+  API --> Core[Application Core / Use Cases]
+  Core --> Repo[Repository Port]
+  Repo --> DB[(Database Adapter)]
+  Core --> Notifier[Notifier Port]
+  Notifier --> Email[Email Adapter]

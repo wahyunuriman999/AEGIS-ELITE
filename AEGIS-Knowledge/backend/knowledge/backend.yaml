@@ -1,0 +1,7 @@
+module: backend
+status: stable
+version: 4.0.0
+owns:
+  - api_styles: [rest, graphql, grpc, websockets]
+  - auth: [jwt, oauth2]
+  - resilience: [circuit_breaker, idempotency, rate_limiting]

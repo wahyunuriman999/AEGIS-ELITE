@@ -1,0 +1,1 @@
+{"release":"06_Frontend","version":"1.1.0","status":"stable","owns":["component-architecture","state-management","accessibility","frontend-performance","frontend-testing","design-system"],"priority_default":"medium","depends_on_domains":["foundation","backend"],"triggers":["component_design","state_management","accessibility","frontend_performance","design_system"]}
