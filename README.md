@@ -119,7 +119,7 @@ If [AEGIS-Core](https://github.com/wahyunuriman999/AEGIS-Core) is the **kernel**
 
 ## Core vs Elite Comparison
 
-| Aspect | AEGIS-Core | AEGIS-Elite |
+| Aspect | AEGIS-Core | AEGIS-WAJA |
 |---|---|---|
 | **Purpose** | Foundation / protocol | Full AI engineering platform |
 | **Focus** | Core reasoning & pipeline | End-to-end orchestration |
