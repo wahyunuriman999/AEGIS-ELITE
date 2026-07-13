@@ -82,9 +82,9 @@ pip install -r requirements.txt
 ```
 
 
-## What is AEGIS Elite?
+## What is AEGIS WAJA?
 
-AEGIS Elite is not a chatbot. Not a code generator.
+AEGIS WAJA is not a chatbot. Not a code generator.
 
 It is an **AI Engineering Operating System** — a platform that orchestrates the entire software engineering lifecycle: from requirements through deployment.
 
@@ -237,7 +237,7 @@ A **hard veto** from Security or Architect Agent = commit is **immediately rejec
 
 ## Cognitive Memory System
 
-AEGIS Elite remembers *why* decisions were made, not just *what* was decided:
+AEGIS WAJA remembers *why* decisions were made, not just *what* was decided:
 
 | Subsystem | Function |
 |---|---|
@@ -260,7 +260,7 @@ python aegis.py status
 
 > Measured across 10 real projects (Q2 2026)
 
-| Metric | Standard AI | AEGIS Elite v14 | Delta |
+| Metric | Standard AI | AEGIS WAJA v14 | Delta |
 |---|---|---|---|
 | Bug rate (per 100 LOC) | 18 | **5** | -72% |
 | Test coverage | 71% | **92%** | +21 pts |
@@ -367,7 +367,7 @@ of this software is strictly prohibited without explicit
 written permission from the author.
 ```
 
-**Interested in using AEGIS Elite for your team or company?**
+**Interested in using AEGIS WAJA for your team or company?**
 Contact: **wahyunuriman999@gmail.com**
 
 ---
