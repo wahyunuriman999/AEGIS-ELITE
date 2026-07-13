@@ -5,16 +5,10 @@
 <br/>
 
 [![Version](https://img.shields.io/badge/AEGIS%20Elite-v14.0.0-00d4ff?style=for-the-badge&logo=rocket&logoColor=white)](https://github.com/wahyunuriman999/AEGIS-ELITE)
-[![Architecture](https://img.shields.io/badge/Architecture-Clean%20%7C%20Hexagonal-00ff88?style=for-the-badge&logo=blueprint&logoColor=white)]()
-[![Consensus](https://img.shields.io/badge/Multi--Agent%20Consensus-Enabled-9b59b6?style=for-the-badge&logo=network-wired&logoColor=white)]()
-[![Runtime](https://img.shields.io/badge/Cognitive%20Runtime-Active-ff6b35?style=for-the-badge&logo=cpu&logoColor=white)]()
-[![License](https://img.shields.io/badge/License-Proprietary%20%7C%20Confidential-e74c3c?style=for-the-badge&logo=shield&logoColor=white)]()
-
-<br/>
-
-> **"The first AI Engineering Operating System that doesn't just generate code — it governs, reviews, refactors, and ships it."**
->
-> — *Wahyu Nur Iman, Founder & Architect*
+[![Tier](https://img.shields.io/badge/Tier-Enterprise%20%7C%20Premium-ff6b35?style=for-the-badge&logo=shield&logoColor=white)]()
+[![Consensus](https://img.shields.io/badge/Multi--Agent-5%20Agents-9b59b6?style=for-the-badge&logo=network-wired&logoColor=white)]()
+[![Governance](https://img.shields.io/badge/Governance-5%20Layers-00ff88?style=for-the-badge&logo=check&logoColor=white)]()
+[![License](https://img.shields.io/badge/License-Proprietary%20%7C%20Confidential-e74c3c?style=for-the-badge&logo=lock&logoColor=white)]()
 
 <br/>
 
@@ -22,217 +16,288 @@
 
 ---
 
-## 🧠 What is AEGIS Elite?
-
-AEGIS Elite is not a chatbot. It is not a code generator.
-
-It is a **full-lifecycle AI Engineering Operating System** — a cognitive runtime that transforms the way software is designed, built, reviewed, and shipped.
-
-While standard AI tools stop at generating text or code snippets, AEGIS Elite orchestrates an entire engineering team of specialized AI agents — each with a defined role, governed by strict architecture contracts, backed by verifiable benchmarks, and driven by multi-agent consensus.
-
 ```
-Requirement ──► Architecture ──► Planning ──► Coding
-     ──► Review ──► Security ──► Optimization ──► Deployment
+AEGIS COGNITIVE RUNTIME PLATFORM
+PROPRIETARY AND CONFIDENTIAL
+Copyright (c) 2024-2026 Wahyu Nur Iman. All rights reserved.
 ```
-
-Every step is governed. Every decision is logged. Every output is verifiable.
 
 ---
 
-## ⚡ Quick Start (10 Minutes to Elite)
+## Apa itu AEGIS Elite?
+
+AEGIS Elite bukan chatbot. Bukan code generator.
+
+Ini adalah **AI Engineering Operating System** — sebuah platform yang mengorkestrasi seluruh siklus rekayasa perangkat lunak: dari requirement hingga deployment.
+
+Jika AEGIS-Core adalah **kernel** (fondasi ringan, cepat, dan modular), maka AEGIS-Elite adalah **sistem operasi lengkap** yang dibangun di atas kernel tersebut.
+
+```
+                         ┌─────────────────────┐
+                         │     AEGIS-Elite      │
+                         │  (Operating System)  │
+                         │                      │
+                         │  Governance ●●●●●    │
+                         │  Consensus  ●●●●●    │
+                         │  Memory     ●●●●●    │
+                         │  Workflow   ●●●●●    │
+                         │  Analytics  ●●●●●    │
+                         │  Enterprise ●●●●●    │
+                         │                      │
+                         │ ┌──────────────────┐ │
+                         │ │   AEGIS-Core      │ │
+                         │ │   (Kernel)        │ │
+                         │ │  Runtime ●●●●●   │ │
+                         │ │  Router  ●●●●●   │ │
+                         │ │  SDK     ●●●●●   │ │
+                         │ └──────────────────┘ │
+                         └─────────────────────┘
+```
+
+**Analogi dari GPT (CTO perspective):**
+> AEGIS-Core ibarat kernel Linux: ringan, fondasi, dapat dipakai untuk banyak sistem.
+> AEGIS-Elite ibarat sistem operasi lengkap: menggunakan Core sebagai fondasi, menambahkan workflow, automation, orchestration, dan governance.
+
+---
+
+## Perbandingan Core vs Elite
+
+| Aspek | AEGIS-Core | AEGIS-Elite |
+|---|---|---|
+| **Tujuan** | Fondasi / protocol | Platform AI engineering lengkap |
+| **Fokus** | Core reasoning & governance | Orkestrasi end-to-end |
+| **Governance** | 1 lapisan dasar | **5 lapisan berlapis** (Architecture + Security + Maintainability + Performance + Compliance) |
+| **Multi-Agent** | Terbatas | **5-agent council** dengan veto power |
+| **Memory** | Basic | **4 subsystem** (Topology diff, ADR ledger, Learning loop, Cognitive summary) |
+| **Workflow** | Dasar–menengah | Pipeline multi-step dengan rollback |
+| **Risk Analysis** | — | **Blast-radius analysis** sebelum setiap perubahan |
+| **Benchmark** | — | **6-metric verifiable benchmark** vs industry |
+| **Extensions** | — | Marketplace **7 domain pack** |
+| **Enterprise** | — | SOC2, GDPR, audit trail, RBAC, SSO |
+| **Learning curve** | ⭐⭐⭐⭐⭐ mudah | ⭐⭐⭐ lebih curam |
+| **Enterprise readiness** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| **Community adoption** | Lebih tinggi | Lebih selektif (enterprise) |
+| **Cocok untuk** | Open source, komunitas, integrasi | **Perusahaan besar, enterprise, regulasi ketat** |
+
+---
+
+## Kapan Pilih Elite?
+
+**Pilih AEGIS-Core jika:**
+- Anda baru mengenal AEGIS dan ingin memahami konsepnya
+- Anda ingin menyisipkan AEGIS ke toolchain yang sudah ada (Cursor, Copilot, Cline)
+- Tim Anda kecil dan maintenance ringan adalah prioritas
+- Anda ingin berkontribusi ke ekosistem open source
+
+**Pilih AEGIS-Elite jika:**
+- Tim Anda > 5 developer dan perlu standar kode yang terpusat
+- Anda butuh *auditability* dan *governance* untuk kebutuhan regulasi
+- Anda perlu workflow multi-step otomatis dari requirement ke deployment
+- Anda butuh validasi berlapis sebelum setiap commit masuk ke production
+
+---
+
+## Quick Start (10 Menit)
 
 ```bash
-# 1. Initialize your elite workspace
-python aegis.py init
+# 1. Clone dan setup
+git clone https://github.com/wahyunuriman999/AEGIS-ELITE.git
+cd AEGIS-ELITE
+pip install pyyaml
 
-# 2. Create a new governed project
+# 2. Cek environment
+python aegis.py doctor
+
+# 3. Buat project baru
 python aegis.py new my-project
 
-# 3. Run AI Pair Review with multi-agent consensus
-python aegis.py review --path .
+# 4. Buat rencana engineering
+python aegis.py plan "Build a REST API with JWT auth and rate limiting"
 
-# 4. Auto-improve with governance enforcement
-python aegis.py improve --task "Refactor authentication module"
+# 5. Jalankan governance audit
+python aegis.py review .
 
-# 5. Run the verifiable benchmark suite
-python aegis.py benchmark
-
-# 6. Check platform status and capability graph
+# 6. Lihat status platform
 python aegis.py status
 ```
 
 ---
 
-## 🏛️ The 10 Pillars of AEGIS Elite
+## 5-Layer Governance Engine
 
-| # | Pillar | Description | Status |
-|---|--------|-------------|--------|
-| **1** | 🖥️ **Developer Experience & CLI Core** | One command to rule them all. `aegis init`, `aegis review`, `aegis improve`. | ✅ Active |
-| **2** | ⚖️ **Governance Engine** | Architecture Guard, Security Scanner, Performance Validator — all automated. | ✅ Active |
-| **3** | 🤝 **Multi-Agent Consensus** | 5 specialized agents debate and vote before any code is accepted. | ✅ Active |
-| **4** | 📊 **Verifiable Benchmark Engine** | Claims backed by data. 72% bug reduction. 66% faster debugging. | ✅ Active |
-| **5** | 🧩 **Extension Marketplace** | Domain packs: React, Flutter, Laravel, Rust, Cybersecurity, and more. | ✅ Active |
-| **6** | 🧬 **Memory 2.0 — Design Ledger** | Remembers *why* decisions were made. Cognitive graph across months of work. | ✅ Active |
-| **7** | 📋 **Governance Score Card** | Instant health scores: Architecture, Security, Performance, Tech Debt. | ✅ Active |
-| **8** | 🚀 **Elite Execution Modes** | Quick / Balanced / Enterprise modes. Adapt to any context, instantly. | ✅ Active |
-| **9** | 🌐 **AI Engineering OS — Full Lifecycle** | End-to-end ownership from requirements to deployment. | ✅ Active |
-| **10** | 🔐 **Proprietary & Secure** | IP enforcement, audit trails, and zero-compromise security posture. | ✅ Active |
-
----
-
-## 🔬 Verifiable Performance Benchmarks
-
-> Results measured across 10 real-world projects (Q2 2026).
-
-| Metric | Standard AI Assistant | AEGIS Elite v14 | Improvement |
-|--------|-----------------------|-----------------|-------------|
-| 🐛 Bug Rate (per 100 LOC) | 18 | **5** | 🟢 **72% Reduction** |
-| 🧪 Test Coverage | 71% | **92%** | 🟢 **+21 pts** |
-| ⏱️ Mean Debug Time | 2 hrs | **40 min** | 🟢 **66% Faster** |
-| 🏛️ Architecture Compliance | 65% | **98%** | 🟢 **+33 pts** |
-| 🛡️ Security Vulnerability Rate | 12 issues/project | **1.4** | 🟢 **88% Safer** |
-| 📦 Feature Delivery Speed | Baseline | **2.3x faster** | 🟢 **130% Faster** |
-
----
-
-## 🤝 Multi-Agent Consensus System
-
-Every code change passes through a team of specialized AI agents:
+Setiap commit melewati 5 lapisan validasi secara berurutan:
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                   AEGIS Consensus Pipeline                      │
-│                                                                 │
-│  🧑‍💻 Programmer  ──►  🕵️ Reviewer  ──►  🏛️ Architect           │
-│                                     ──►  🛡️ Security           │
-│                                     ──►  ⚡ Performance        │
-│                                                                 │
-│  Required: 4/5 approvals + mandatory Security + Architect sign  │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-No code is committed blindly. Every agent has veto power in its domain.
-
----
-
-## 🧬 Architecture: Capability Graph
-
-AEGIS Elite v14 introduces the **Capability Graph** — a Syscall Table for AI Engineering:
-
-```
-AEGIS-Kernel  (Capability Graph / SSOT)
-    │
-    ├── AEGIS-Runtime      ◄── Control Plane / Task Router
-    ├── AEGIS-Orchestrator ◄── Active Model Routing (8x4 Matrix)
-    ├── AEGIS-Compiler     ◄── 5-Stage Pipeline (Parse→Validate→Build→Test→Deploy)
-    ├── AEGIS-Consensus    ◄── Multi-Agent Debate & Voting
-    ├── AEGIS-Governance   ◄── Architecture Guard + Security Scanner
-    ├── AEGIS-Memory       ◄── Design Ledger + Cognitive Graph
-    ├── AEGIS-Benchmark    ◄── Verifiable Performance Metrics
-    └── AEGIS-Extension    ◄── Domain Pack Marketplace
-```
-
-Every module is registered in the Capability Graph. No module can be invoked unless it exists in the SSOT.
-
----
-
-## 📊 Governance Score Card (Live Example)
-
-```
-╔══════════════════════════════════════════════════════╗
-║          AEGIS Elite Governance Report               ║
-║          Project: Authentication Service             ║
-╠══════════════════════════════════════════════════════╣
-║  Architecture Compliance  ████████████████████  98% ║
-║  Security Posture         ███████████████████   95% ║
-║  Performance Score        ██████████████████    88% ║
-║  Maintainability Index    ████████████████████  92% ║
-║  Test Coverage            █████████████████     92% ║
-║  Technical Debt Score     ██                     8% ║
-╚══════════════════════════════════════════════════════╝
-  ✅ Consensus: APPROVED (5/5 agents)
-  ✅ Security: PASSED (0 critical issues)
-  ✅ Ready for: Production Deployment
+  Commit Request
+       │
+       ▼
+  ┌─────────────────────────────────────────────────────────┐
+  │  Layer 1: Architecture Guard  (weight 30%)              │
+  │  Cek: Clean Architecture boundaries, layer imports       │
+  │  Veto: YES — Kernel tidak boleh import Studio/Market    │
+  ├─────────────────────────────────────────────────────────┤
+  │  Layer 2: Security Scanner    (weight 30%)              │
+  │  Cek: Hardcoded secrets, SQL injection, eval/exec       │
+  │  Veto: YES — Zero tolerance untuk Critical issues       │
+  ├─────────────────────────────────────────────────────────┤
+  │  Layer 3: Maintainability     (weight 20%)              │
+  │  Cek: Fungsi > 60 baris, file > 500 baris, tech debt   │
+  ├─────────────────────────────────────────────────────────┤
+  │  Layer 4: Performance Guard   (weight 10%)              │
+  │  Cek: time.sleep() di prod, blocking calls              │
+  ├─────────────────────────────────────────────────────────┤
+  │  Layer 5: Compliance          (weight 10%)              │
+  │  Cek: License header, print() di library code           │
+  └─────────────────────────────────────────────────────────┘
+       │
+       ▼
+  Final Score (weighted average) → APPROVE / WARN / REJECT
 ```
 
 ---
 
-## 🧩 Extension Marketplace
+## 5-Agent Consensus Council
 
-Extend AEGIS Elite with domain-specific intelligence packs:
+Setelah governance lulus, 5 agen AI mendebat perubahan:
 
-| Pack | Domain | Capabilities |
-|------|--------|-------------|
+```
+  ┌──────────────────────────────────────────────────────────┐
+  │            AEGIS Consensus Council (Enterprise)          │
+  ├──────────────────────────────────────────────────────────┤
+  │  🧑‍💻 Programmer   (weight 1.0)  — Clean code, standards  │
+  │  🔍 Reviewer     (weight 1.0)  — DRY, readability        │
+  │  🏛️ Architect    (weight 1.5)  — Architecture [VETO]     │
+  │  🛡️ Security     (weight 2.0)  — OWASP, secrets [VETO]  │
+  │  ⚡ Performance  (weight 1.0)  — N+1, blocking calls     │
+  ├──────────────────────────────────────────────────────────┤
+  │  Required: 4/5 agents approve + zero hard vetoes         │
+  │  Threshold: 80% weighted approval rate                   │
+  └──────────────────────────────────────────────────────────┘
+```
+
+**Hard veto** dari Security atau Architect Agent = commit **langsung ditolak**, tidak peduli skor lainnya.
+
+---
+
+## Cognitive Memory System
+
+AEGIS Elite mengingat *mengapa* keputusan dibuat, bukan hanya *apa* yang diputuskan:
+
+| Subsystem | Fungsi |
+|---|---|
+| **ProjectMemory** | Snapshot topology arsitektur + diff antar sesi |
+| **DecisionHistory** | ADR (Architecture Decision Record) ledger — immutable |
+| **LearningLoop** | Governance strictness meningkat otomatis dari kegagalan berulang |
+| **CognitiveSummary** | Trend lintas sesi: skor membaik/menurun, rekomendasi otomatis |
+
+```bash
+# Lihat ADR yang tercatat
+python aegis.py memory list
+
+# Lihat insights lintas sesi
+python aegis.py status
+```
+
+---
+
+## Verifiable Benchmarks
+
+> Diukur pada 10 proyek nyata (Q2 2026)
+
+| Metric | AI Standar | AEGIS Elite v14 | Delta |
+|---|---|---|---|
+| 🐛 Bug rate (per 100 LOC) | 18 | **5** | -72% |
+| 🧪 Test coverage | 71% | **92%** | +21 pts |
+| ⏱️ Waktu debug | 2 jam | **40 menit** | -66% |
+| 🏛️ Architecture compliance | 65% | **98%** | +33 pts |
+| 🛡️ Security vulnerabilities | 12/proyek | **1.4** | -88% |
+| 🚀 Feature delivery | baseline | **2.3× lebih cepat** | +130% |
+
+---
+
+## CLI Reference Lengkap
+
+```bash
+# Project
+python aegis.py new <name>              # Scaffold project baru
+python aegis.py plan "<task>"          # Rencana engineering via Model Router
+python aegis.py run "<task>"           # Eksekusi via Event Bus + Governance
+python aegis.py status                 # Dashboard platform real-time
+
+# Governance & Quality
+python aegis.py review [path]          # Deep governance audit (5 layers)
+python aegis.py scan [path]            # Quick vulnerability scan
+python aegis.py audit                  # Full architecture compliance report
+python aegis.py score                  # Generate governance score card
+python aegis.py improve --task "<x>"   # Auto-refactor dengan consensus
+
+# Memory
+python aegis.py memory list            # Tampilkan ADR ledger
+python aegis.py knowledge sync         # Sinkronisasi domain knowledge
+
+# Platform
+python aegis.py doctor                 # Health check environment
+python aegis.py benchmark              # Jalankan verifiable benchmark
+python aegis.py quickstart             # Onboarding 60 detik
+python aegis.py install-hooks          # Pasang sebagai git pre-commit hook
+python aegis.py marketplace            # Browse extension packs
+python aegis.py install <pack>         # Install domain pack
+```
+
+---
+
+## Extension Marketplace
+
+| Pack | Domain | Fitur |
+|---|---|---|
 | `react-pack` | Frontend | Component governance, hook patterns, bundle optimization |
 | `flutter-pack` | Mobile | Widget architecture, state management, platform compliance |
 | `laravel-pack` | Backend | Eloquent patterns, API governance, queue security |
 | `rust-pack` | Systems | Memory safety, ownership analysis, concurrency review |
 | `cybersecurity-pack` | Security | OWASP scanning, threat modeling, pen-test automation |
 | `data-pack` | ML/Data | Pipeline governance, model card compliance, bias detection |
+| `python-pack` | Python/API | FastAPI patterns, dependency injection, async best practices |
 
 ---
 
-## 📐 Advanced CLI Reference
+## Execution Modes
 
-```bash
-# Project Management
-python aegis.py new <name>              # Create new governed project
-python aegis.py plan --feature <desc>  # AI-powered feature planning
-python aegis.py status                 # Full platform health dashboard
-
-# Code Quality
-python aegis.py review --path <dir>    # Multi-agent code review
-python aegis.py improve --task <desc>  # Auto-refactor with consensus
-python aegis.py benchmark              # Run verifiable benchmarks
-
-# Governance
-python aegis.py audit                  # Full architecture compliance audit
-python aegis.py score                  # Generate governance score card
-
-# Memory & Knowledge
-python aegis.py memory list            # Show design decisions log
-python aegis.py knowledge sync         # Sync domain knowledge packs
-```
-
----
-
-## 🚀 Execution Modes
-
-| Mode | Use Case | Agents Active | Consensus Threshold |
-|------|----------|---------------|---------------------|
+| Mode | Untuk apa | Agen aktif | Threshold |
+|---|---|---|---|
 | **Quick** ⚡ | Rapid prototyping | 2 (Programmer + Reviewer) | 1/2 |
-| **Balanced** ⚖️ | Standard development | 3 (+ Architect) | 2/3 |
-| **Enterprise** 🏛️ | Production deployments | 5 (All agents) | 4/5 + mandatory veto |
+| **Balanced** ⚖️ | Development harian | 3 (+ Architect) | 2/3 |
+| **Enterprise** 🏛️ | Production deployment | 5 (semua agen + veto) | 4/5 + hard veto |
 
 ---
 
-## 🏗️ Repository Structure
+## Struktur Repositori
 
 ```
 AEGIS-ELITE/
-├── 🧠 AEGIS-Kernel/          # Core capability graph & SSOT registry
-├── ⚡ AEGIS-Runtime/          # Control plane & task dispatcher
-├── 🎯 AEGIS-Orchestrator/    # Active model routing (8x4 matrix)
+├── 🧠 AEGIS-Kernel/          # Capability Graph, SSOT registry, lifecycle
+├── ⚡ AEGIS-Runtime/          # Control plane, dispatcher, event loop
+├── 🎯 AEGIS-Orchestrator/    # Model router (8×4 matrix), workflow engine
 ├── 🔨 AEGIS-Compiler/         # 5-stage build pipeline
-├── 🤝 AEGIS-Consensus/       # Multi-agent debate engine
-├── ⚖️ AEGIS-Governance/      # Architecture & security enforcement
-├── 🧬 AEGIS-Memory/          # Design ledger & cognitive graph
-├── 📊 AEGIS-Benchmark/       # Verifiable performance metrics
+├── 🤝 AEGIS-Consensus/       # 5-agent debate & voting engine
+├── ⚖️ AEGIS-Governance/      # 5-layer policy engine
+├── 🧬 AEGIS-Memory/          # Cognitive memory (4 subsystems)
+├── 📊 AEGIS-Benchmark/       # Verifiable benchmark suite
 ├── 🧩 AEGIS-Extension/       # Domain pack marketplace
 ├── 📚 AEGIS-Knowledge/       # Compiled knowledge packs
 ├── 🧪 AEGIS-Tests/           # Automated test suite
-├── 🏢 AEGIS-Enterprise/      # Enterprise features & compliance
-├── 📡 AEGIS-Analytics/       # Telemetry & insights
-├── ⚠️ AEGIS-Risk/            # Risk assessment engine
-├── 🔧 AEGIS-SDK/             # Developer SDK & integrations
-├── aegis.py                  # Main CLI entry point
-├── QUICKSTART.md             # 10-minute onboarding guide
-└── README.md                 # This file
+├── 🏢 AEGIS-Enterprise/      # SOC2, GDPR, RBAC, audit trail
+├── 📡 AEGIS-Analytics/       # Telemetry & engineering insights
+├── ⚠️ AEGIS-Risk/            # Blast-radius analysis
+├── 🔧 AEGIS-SDK/             # Enforced integration contract
+├── aegis.py                  # CLI entry point
+├── aegis_manifest.yaml       # Single source of truth (all modules)
+├── QUICKSTART.md             # Panduan 10 menit
+└── README.md                 # File ini
 ```
 
 ---
 
-## ⚖️ License & Intellectual Property
+## Lisensi & Kontak
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
@@ -243,18 +308,21 @@ AEGIS-ELITE/
 ║  All rights reserved.                                        ║
 ║                                                              ║
 ║  Unauthorized copying, modification, distribution, or use   ║
-║  of this software, via any medium, is strictly prohibited   ║
-║  without the explicit written permission of the author.     ║
+║  of this software is strictly prohibited without explicit   ║
+║  written permission from the author.                        ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
+
+**Tertarik menggunakan AEGIS Elite untuk tim atau perusahaan Anda?**
+Hubungi: **wahyunuriman999@gmail.com**
 
 ---
 
 <div align="center">
 
-**Built with 🔥 by [Wahyu Nur Iman](https://github.com/wahyunuriman999)**
+**Built by [Wahyu Nur Iman](https://github.com/wahyunuriman999)**
 
-*"Not just AI. An AI Engineering Operating System."*
+*"If Core is the engine, Elite is the complete vehicle."*
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:16213e,50:1a1a2e,100:0d1117&height=100&section=footer" width="100%"/>
 
