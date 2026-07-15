@@ -5,6 +5,7 @@
 # All rights reserved.
 # ==========================================
 
+import importlib.util
 import os
 import json
 import http.server
@@ -14,69 +15,89 @@ from pathlib import Path
 
 class AEGISStudioHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
-      if self.path == "/api/status":
-        # Try to fetch recent runs from local API proxy endpoint
-        try:
-          import urllib.request, urllib.error, os
-          req = urllib.request.Request("http://127.0.0.1:8000/proxy/runs")
-          secret = os.environ.get('STUDIO_PROXY_SECRET')
-          if secret:
-            req.add_header('X-Proxy-Secret', secret)
-          resp = urllib.request.urlopen(req, timeout=2)
-          runs = json.loads(resp.read())
-          # Convert runs list into a status payload expected by the dashboard
-          latest = runs[0] if runs else None
-          payload = {
-            "platform": "AEGIS Elite",
-            "status": "OPERATING" if latest else "READY",
-            "governance_score": latest.get('governance_score', 87) if latest else 0,
-            "registry_loaded": 0,
-            "registry_total": 0,
-            "benchmark": {"aegis": (latest.get('score') if latest else 86)}
-          }
-          self._send_json(payload)
-          return
-        except Exception:
-          # Fallback to a small mocked response
-          self._send_json({
-            "platform": "AEGIS Elite",
-            "status": "OPERATING",
-            "governance_score": 87,
-            "registry_loaded": 11,
-            "registry_total": 15,
-            "benchmark": {"aegis": 86, "claude": 56, "cursor": 63, "openhands": 48},
-          })
-          return
+        if self.path == "/api/status":
+            self._send_json(self._collect_status())
+            return
 
-        # Serve static dashboard index
         if self.path in ("/", "/index.html"):
-          content = self._render_dashboard()
-          self.send_response(200)
-          self.send_header("Content-type", "text/html; charset=utf-8")
-          self.end_headers()
-          self.wfile.write(content.encode("utf-8"))
-          return
+            content = self._render_dashboard()
+            self.send_response(200)
+            self.send_header("Content-type", "text/html; charset=utf-8")
+            self.end_headers()
+            self.wfile.write(content.encode("utf-8"))
+            return
 
-        # Serve static assets under /static/
         if self.path.startswith('/static/'):
-          try:
-            base = Path(__file__).resolve().parent / 'static'
-            rel = self.path[len('/static/'):]
-            target = base / rel
-            if target.exists() and target.is_file():
-              ct = 'text/html' if target.suffix == '.html' else 'application/octet-stream'
-              self.send_response(200)
-              self.send_header('Content-type', ct)
-              self.end_headers()
-              self.wfile.write(target.read_bytes())
-              return
-          except Exception:
-            pass
+            try:
+                base = Path(__file__).resolve().parent / 'static'
+                rel = self.path[len('/static/'):]
+                target = base / rel
+                if target.exists() and target.is_file():
+                    ct = 'text/html' if target.suffix == '.html' else 'application/octet-stream'
+                    self.send_response(200)
+                    self.send_header('Content-type', ct)
+                    self.end_headers()
+                    self.wfile.write(target.read_bytes())
+                    return
+            except Exception:
+                pass
 
         self.send_response(200)
         self.send_header("Content-type", "text/html; charset=utf-8")
         self.end_headers()
         self.wfile.write(self._render_dashboard().encode("utf-8"))
+
+    def _load_module(self, module_name: str, module_path: Path):
+        try:
+            spec = importlib.util.spec_from_file_location(module_name, str(module_path))
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return module
+        except Exception:
+            return None
+
+    def _collect_status(self):
+        base = Path(__file__).resolve().parent.parent
+        payload = {
+            "platform": "AEGIS Elite",
+            "status": "DEGRADED",
+            "governance_score": 0,
+            "registry_loaded": 0,
+            "registry_total": 0,
+            "benchmark": {"aegis": 0},
+            "capabilities": 0,
+        }
+
+        registry_mod = self._load_module("registry", base / "AEGIS-Kernel" / "registry.py")
+        cap_graph_mod = self._load_module("capability_graph", base / "AEGIS-Kernel" / "capability_graph.py")
+        policy_mod = self._load_module("policy_engine", base / "AEGIS-Governance" / "policy_engine.py")
+        benchmark_mod = self._load_module("benchmark_runner", base / "AEGIS-Benchmark" / "runner.py")
+
+        try:
+            if registry_mod:
+                registry = registry_mod.EngineRegistry(str(base))
+                report = registry.boot()
+                payload["registry_loaded"] = report.get("loaded", 0)
+                payload["registry_total"] = report.get("total", 0)
+                payload["status"] = "OPERATING" if report.get("loaded", 0) > 0 else "DEGRADED"
+
+            if cap_graph_mod and registry_mod:
+                if hasattr(cap_graph_mod.graph, "wire_from_registry") and registry_mod:
+                    cap_graph_mod.graph.wire_from_registry(registry)
+                payload["capabilities"] = len(cap_graph_mod.graph.list_capabilities())
+
+            if policy_mod:
+                governance = policy_mod.PolicyEngine(str(base)).evaluate()
+                payload["governance_score"] = governance.get("governance_score", 0)
+
+            if benchmark_mod:
+                benchmark_report = benchmark_mod.BenchmarkEngine().run_benchmark(str(base)) if hasattr(benchmark_mod.BenchmarkEngine, 'run_benchmark') else None
+                if benchmark_report and benchmark_report.get("results", {}).get("aegis"):
+                    payload["benchmark"]["aegis"] = benchmark_report["results"]["aegis"]["score"]
+        except Exception as exc:
+            payload["error"] = str(exc)
+
+        return payload
 
     def _send_json(self, payload):
         body = json.dumps(payload).encode("utf-8")
