@@ -242,6 +242,79 @@ class CapabilityGraph:
     def get(self, capability_name: str) -> Optional[CapabilityRecord]:
         return self._capabilities.get(capability_name)
 
+    def wire_from_registry(self, registry) -> None:
+        """
+        Connect kernel capability stubs to real engine implementations
+        loaded by the EngineRegistry.
+        """
+        def wrap_governance(module):
+            if hasattr(module, "GovernanceEngine"):
+                return lambda workspace=".", **kwargs: module.GovernanceEngine(workspace).run_full_audit()
+            return None
+
+        def wrap_consensus(module):
+            if hasattr(module, "VotingEngine"):
+                return lambda context=None, **kwargs: module.VotingEngine().execute_consensus(context or {})
+            return None
+
+        def wrap_benchmark(module):
+            if hasattr(module, "BenchmarkEngine"):
+                return lambda workspace=".", **kwargs: module.BenchmarkEngine().run_benchmark()
+            return None
+
+        def wrap_risk(module):
+            if hasattr(module, "RiskAssessor"):
+                return lambda diff_payload="", **kwargs: module.RiskAssessor(diff_payload).get_risk_score()
+            return None
+
+        def wrap_scheduler(module):
+            if hasattr(module, "Dispatcher"):
+                return lambda task="", workspace=".", **kwargs: module.Dispatcher().dispatch(task, workspace=workspace)
+            return None
+
+        def wrap_model_router(module):
+            if hasattr(module, "ModelRouter"):
+                return lambda task="", **kwargs: module.ModelRouter().route(task)
+            return None
+
+        def wrap_memory(module):
+            if hasattr(module, "DecisionHistory"):
+                return lambda workspace=".", **kwargs: module.DecisionHistory(workspace).list_decisions(limit=kwargs.get("limit", 5))
+            return None
+
+        def wrap_event_bus(module):
+            if hasattr(module, "EventBus"):
+                return lambda **kwargs: module.EventBus()
+            return None
+
+        capability_to_engine = {
+            "platform.governance": ("governance", wrap_governance),
+            "platform.consensus": ("consensus", wrap_consensus),
+            "platform.model_router": ("orchestrator", wrap_model_router),
+            "engine.benchmark": ("benchmark", wrap_benchmark),
+            "engine.risk": ("risk", wrap_risk),
+            "core.scheduler": ("runtime", wrap_scheduler),
+            "core.memory": ("memory", wrap_memory),
+            "core.event_bus": ("workflow", wrap_event_bus),
+        }
+
+        for cap_name, (engine_id, wrapper) in capability_to_engine.items():
+            cap = self._capabilities.get(cap_name)
+            if cap is None:
+                continue
+
+            engine_mod = registry.get(engine_id)
+            if engine_mod is None:
+                cap.status = CapabilityStatus.PLANNED
+                continue
+
+            entry_fn = wrapper(engine_mod)
+            if entry_fn is not None:
+                cap.entry_fn = entry_fn
+                cap.status = CapabilityStatus.AVAILABLE
+            else:
+                cap.status = CapabilityStatus.PLANNED
+
 
 # Global singleton — the AEGIS syscall table
 graph = CapabilityGraph()
