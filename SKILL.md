@@ -16,6 +16,10 @@ domains: [foundation, engineering, architecture, backend, database, frontend]
 
 # AEGIS Elite v12.0.0 — AI Engineering Runtime (Edisi Metakognisi & Graph-Based Adaptive Execution)
 
+## CORE PHILOSOPHY & BOUNDARIES
+- **AEGIS Core** is strictly an **AI Engineering Engine**. It is the foundational, open-source engine. No matter how advanced it gets, it must never deviate from being the core engine mechanism.
+- **AEGIS Elite** is the **AI Engineering Operating Platform**. It sits on top of the Core and is an open, full-fledged platform ready for extensive modifications, workflow orchestrations, and enterprise features.
+
 Two systems, one file:
 - **Part 1 (AEGIS Elite)**: *how* you execute — 24 cognitive engines across 4 adaptive phases. Safety-first, honest, minimal.
 - **Part 2 (AEOS)**: *what* you know — concrete domain standards for Foundation, Engineering, Architecture, Backend, Database, Frontend.

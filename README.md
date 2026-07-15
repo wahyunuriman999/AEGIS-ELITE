@@ -90,9 +90,13 @@ pip install -r requirements.txt
 ```
 
 
-## What is AEGIS WAJA?
+## What is AEGIS Elite?
 
-AEGIS WAJA is not a chatbot. Not a code generator.
+**CORE PHILOSOPHY & BOUNDARIES:**
+- **AEGIS Core** is strictly an **AI Engineering Engine**. It is the foundational, open-source engine. No matter how advanced it gets, it must never deviate from being the core engine mechanism.
+- **AEGIS Elite** is the **AI Engineering Operating Platform**. It sits on top of the Core and is an open, full-fledged platform ready for extensive modifications, workflow orchestrations, and enterprise features.
+
+AEGIS Elite is not a chatbot. Not a code generator.
 
 It is an **AI Engineering Operating System** — a platform that orchestrates the entire software engineering lifecycle: from requirements through deployment.
 
