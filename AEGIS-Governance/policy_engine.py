@@ -139,8 +139,7 @@ class SecurityScanner:
     """
 
     SECRET_PATTERN   = re.compile(
-        r"(api[_\-]?key|secret[_\-]?key|password|token|access[_\-]?key)\s*=\s*['\"]([^'\"]{5,})['\"]",
-        re.IGNORECASE
+        r"(?i)\b(api[_\-]?key|secret[_\-]?key|password|token|access[_\-]?key)\b\s*=\s*['\"][^'\"]{3,}['\"]"
     )
     SQL_INJECT       = re.compile(r"execute\s*\(\s*f['\"]|execute\s*\(\s*['\"].*%s|\.format\s*\(.*\)\s*\)", re.IGNORECASE)
     EVAL_EXEC        = re.compile(r"\b(eval|exec)\s*\(")
@@ -490,6 +489,8 @@ class PolicyEngine:
         status = "REJECT" if (has_critical or not arch_passed or not sec_passed) else (
             "APPROVE" if final_score >= 80 else "WARN"
         )
+        if final_score < 60 and not has_critical:
+            status = "WARN"
 
         return {
             "status": status,

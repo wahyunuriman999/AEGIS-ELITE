@@ -290,38 +290,53 @@ class AIPairReview:
     def __init__(self):
         self.engine = VotingEngine()
 
+    def _safe_print(self, s: str):
+        try:
+            print(s)
+        except UnicodeEncodeError:
+            # Fallback for consoles that don't support box-drawing or emoji
+            try:
+                fallback = s.encode('utf-8', 'replace').decode('ascii', 'replace')
+                print(fallback)
+            except Exception:
+                print(s.encode('utf-8', 'replace'))
+
     def run_consensus(self, governance_results: dict) -> bool:
-        print(f"\n  ╔══ AEGIS Multi-Agent Consensus (5-Agent Council) ══════╗")
-        print(f"  ║  Mode: Enterprise (4/5 required + veto check)         ║")
-        print(f"  ╚════════════════════════════════════════════════════════╝\n")
+        self._safe_print("\n  AEGIS Multi-Agent Consensus (5-Agent Council) \n")
+        self._safe_print("  Mode: Enterprise (4/5 required + veto check)\n")
+
+        # Coerce simple string inputs into a minimal context dict
+        if not isinstance(governance_results, dict):
+            governance_results = {
+                "task": str(governance_results),
+                "issues": [],
+                "scores": {},
+            }
 
         reviews: List[AgentReview] = []
         for agent in self.engine.agents:
             review = agent.review(governance_results)
             reviews.append(review)
             veto_tag = " [VETO POWER]" if agent.has_veto else ""
-            verdict_color = (
-                "\033[92mAPPROVED\033[0m" if review.verdict == Verdict.APPROVED
-                else "\033[91mVETOED \033[0m"
-            )
+            verdict_text = "APPROVED" if review.verdict == Verdict.APPROVED else "VETOED"
             conf = f"{review.confidence*100:.0f}%"
-            print(f"    → {review.agent_name:<22}{veto_tag:<14} [{verdict_color}]  conf={conf}")
-            print(f"       {review.reason}")
+            self._safe_print(f"    -> {review.agent_name:<22}{veto_tag:<14} [{verdict_text}]  conf={conf}")
+            self._safe_print(f"       {review.reason}")
             if review.suggestions:
                 for s in review.suggestions[:2]:
-                    print(f"       💡 {s}")
-            print()
+                    self._safe_print(f"       - {s}")
+            self._safe_print("")
 
         result = self.engine.execute_consensus(governance_results)
         final = result["consensus_reached"]
         rate  = result["approval_rate"]
 
-        print(f"  ── Final Result ─────────────────────────────────────────")
-        print(f"  Approval Rate : {rate*100:.0f}%  ({result['approval_count']}/{result['total_agents']} agents)")
+        self._safe_print(f"  -- Final Result --")
+        self._safe_print(f"  Approval Rate : {rate*100:.0f}%  ({result['approval_count']}/{result['total_agents']} agents)")
         if result.get("hard_vetoes"):
             for v in result["hard_vetoes"]:
-                print(f"  🚫 HARD VETO  : {v}")
-        print(f"\n  Final Consensus: {'✅ APPROVED — Ready for commit' if final else '❌ REJECTED — Fix required before proceeding'}")
+                self._safe_print(f"  HARD VETO  : {v}")
+        self._safe_print(f"\n  Final Consensus: {'APPROVED - Ready for commit' if final else 'REJECTED - Fix required before proceeding'}")
         return final
 
 

@@ -26,9 +26,12 @@ Architecture:
   EventBus.publish(result_event)
 """
 
+import importlib.util
 import os
 import sys
 import time
+from importlib.util import module_from_spec, spec_from_file_location
+from pathlib import Path
 from typing import Any, Dict, Optional
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -96,6 +99,39 @@ class Dispatcher:
 
     def __init__(self):
         self._dispatch_log: list = []
+        self.cap_graph = None
+        self.registry = None
+        self._initialize_runtime()
+
+    def _load_module(self, module_name: str, module_path: str):
+        if not os.path.exists(module_path):
+            return None
+        spec = spec_from_file_location(module_name, module_path)
+        module = module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+
+    def _initialize_runtime(self):
+        root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        registry_path = os.path.join(root_dir, "AEGIS-Kernel", "registry.py")
+        cap_graph_path = os.path.join(root_dir, "AEGIS-Kernel", "capability_graph.py")
+
+        registry_mod = self._load_module("registry", registry_path)
+        cap_graph_mod = self._load_module("capability_graph", cap_graph_path)
+
+        if registry_mod is None or cap_graph_mod is None:
+            return
+
+        try:
+            registry = registry_mod.EngineRegistry(root_dir)
+            registry.boot()
+            self.registry = registry
+            if hasattr(cap_graph_mod.graph, "wire_from_registry"):
+                cap_graph_mod.graph.wire_from_registry(registry)
+            self.cap_graph = cap_graph_mod.graph
+        except Exception:
+            self.cap_graph = None
+            self.registry = None
 
     def _classify_complexity(self, task: str) -> TaskComplexity:
         words = len(task.split())
@@ -116,7 +152,7 @@ class Dispatcher:
                 return capability
         return "platform.model_router"  # Default to model router
 
-    def dispatch(self, task: str, bus=None) -> DispatchResult:
+    def dispatch(self, task: str, workspace: str = ".", bus=None) -> DispatchResult:
         """
         Main dispatch method. Routes a task to the appropriate Capability.
         Publishes events to the EventBus if provided.
@@ -140,22 +176,35 @@ class Dispatcher:
             "reason": f"Complexity={complexity}",
         })
 
-        # Simulate execution (real implementation would call the provider)
-        time.sleep(0.8)
+        result_payload = None
+        status = "success"
+        try:
+            if self.cap_graph is not None:
+                result_payload = self.cap_graph.invoke(
+                    capability,
+                    task=task,
+                    workspace=workspace,
+                )
+            else:
+                raise RuntimeError("Capability Graph unavailable")
+        except Exception as exc:
+            result_payload = {"error": str(exc)}
+            status = "failed"
 
         elapsed = (time.time() - start) * 1000
         result = DispatchResult(
             task=task,
             capability=capability,
             provider=provider,
-            status="success",
+            status=status,
+            payload=result_payload,
             elapsed_ms=elapsed,
         )
         self._dispatch_log.append(result.to_dict())
 
         self._emit(bus, "DISPATCH_COMPLETE", {
             "task": task,
-            "status": "success",
+            "status": status,
             "elapsed_ms": round(elapsed, 2),
         })
 

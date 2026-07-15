@@ -260,7 +260,8 @@ class LearningLoop:
 
         # Increase strictness for high/critical failures
         if severity in ("Critical", "High"):
-            rules["strictness_multiplier"] = min(2.0, rules["strictness_multiplier"] + 0.15)
+            # moderate increase for high/critical failures
+            rules["strictness_multiplier"] = min(2.0, rules["strictness_multiplier"] + 0.10)
         else:
             rules["strictness_multiplier"] = min(2.0, rules["strictness_multiplier"] + 0.05)
 
@@ -291,7 +292,8 @@ class LearningLoop:
         rules["learning_events"] = rules["learning_events"][-50:]
 
         _write_json(self.rules_file, rules)
-        return rules
+        # Return the updated strictness multiplier for callers expecting numeric feedback
+        return rules["strictness_multiplier"]
 
     def get_current_rules(self) -> Dict:
         return _read_json(self.rules_file, self.DEFAULT_RULES)

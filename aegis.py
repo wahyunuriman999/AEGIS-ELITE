@@ -9,7 +9,6 @@ import argparse
 import sys
 import time
 import os
-import random
 
 from importlib.util import spec_from_file_location, module_from_spec
 
@@ -28,7 +27,7 @@ voting_mod = load_module("voting_engine", os.path.join(os.path.dirname(__file__)
 bench_mod = load_module("runner", os.path.join(os.path.dirname(__file__), "AEGIS-Benchmark", "runner.py"))
 memory_mod = load_module("memory_engine", os.path.join(os.path.dirname(__file__), "AEGIS-Memory", "memory_engine.py"))
 orchestrator_mod = load_module("workflow_engine", os.path.join(os.path.dirname(__file__), "AEGIS-Orchestrator", "workflow_engine.py"))
-plugin_mod = load_module("plugin_manager", os.path.join(os.path.dirname(__file__), "AEGIS-Marketplace", "plugin_manager.py"))
+plugin_mod = load_module("plugin_manager", os.path.join(os.path.dirname(__file__), "AEGIS-Extension", "plugin_manager.py"))
 studio_mod = load_module("web_server", os.path.join(os.path.dirname(__file__), "AEGIS-Studio", "web_server.py"))
 git_hooks_mod = load_module("git_hooks", os.path.join(os.path.dirname(__file__), "AEGIS-Kernel", "git_hooks.py"))
 
@@ -97,21 +96,47 @@ def run_benchmark():
         print("[ERROR] Benchmark Engine module not found. Check AEGIS-Benchmark installation.")
         return
     engine = bench_mod.BenchmarkEngine()
-    engine.run_benchmark()
+    report = engine.run_benchmark()
+    print("\n📊 AEGIS Benchmark Report")
+    print("=" * 60)
+    for suite_name, metrics in report["results"].items():
+        print(f"  {suite_name.upper():<12} score={metrics['score']}/100 bug_rate={metrics['bug_rate']} coverage={metrics['coverage']}%")
+    summary = report["summary"]
+    print("=" * 60)
+    print(f"  Best performer: {summary['best_suite'].upper()} ({summary['best_score']}/100)")
+    print(f"  {summary['headline']}")
+    return report
 
 def run_scan(path):
     print(f"🔍 Scanning {path} for immediate vulnerabilities and architectural violations...")
-    time.sleep(1)
-    print(" -> Analyzing AST and imports...")
     time.sleep(0.5)
-    print(" -> Checking hardcoded secrets...")
-    time.sleep(0.5)
-    
-    issues = random.choice([0, 1, 3])
-    if issues == 0:
-        print("\n✅ \033[92mScan Complete: No critical issues found.\033[0m")
-    else:
-        print(f"\n⚠️ \033[93mScan Complete: Found {issues} potential issues.\033[0m Run `aegis review` for a deep audit.")
+    print(" -> Collecting source files...")
+    time.sleep(0.3)
+    print(" -> Running lightweight governance analysis...")
+    time.sleep(0.3)
+
+    if not policy_mod:
+        print("[ERROR] Policy Engine module not found. Check AEGIS-Governance installation.")
+        return
+
+    engine = policy_mod.PolicyEngine(path)
+    report = engine.evaluate()
+    issues = report.get("violations", [])
+    issue_count = len(issues)
+
+    if issue_count == 0:
+        print("\n✅ \033[92mScan Complete: No issues found.\033[0m")
+        return
+
+    print(f"\n⚠️ \033[93mScan Complete: Found {issue_count} potential issue(s).\033[0m")
+    print("Review details from the Governance engine below:")
+    for idx, issue in enumerate(issues[:5], 1):
+        detail = issue.get("description") or issue.get("detail") or "No detail available"
+        file_path = issue.get("file_path") or issue.get("file") or "unknown"
+        severity = issue.get("severity", "Medium")
+        print(f"  {idx}. [{severity}] {detail} (file: {file_path})")
+    if issue_count > 5:
+        print(f"  ...and {issue_count - 5} more issues. Run `aegis review {path}` for the full audit.")
 
 def run_architecture(path):
     print(f"🏗️ Analyzing architecture topology in {path}...")
@@ -279,7 +304,7 @@ def run_plan(task: str, path: str = "."):
     if dispatcher_mod:
         dispatcher = dispatcher_mod.Dispatcher()
         print("  \033[96m[Dispatcher]\033[0m Routing task to Capability Graph...")
-        result = dispatcher.dispatch(task)
+        result = dispatcher.dispatch(task, workspace=path)
         print(f"  \033[96m[Dispatcher]\033[0m Dispatched → {result.provider} ({result.elapsed_ms:.0f}ms)")
     else:
         print("  [WARN] Dispatcher not available.")
@@ -309,33 +334,53 @@ def run_status():
         "registry",
         os.path.join(os.path.dirname(__file__), "AEGIS-Kernel", "registry.py")
     )
+    policy_mod = load_module(
+        "policy_engine",
+        os.path.join(os.path.dirname(__file__), "AEGIS-Governance", "policy_engine.py")
+    )
 
-    print("\n" + "═" * 65)
+    print("\n" + "═" * 75)
     print("  AEGIS ELITE OS — Platform Status Dashboard")
-    print("═" * 65)
+    print("═" * 75)
+
+    registry_report = {"loaded": 0, "failed": 0, "planned": 0, "total": 0}
+    registry = None
+    if reg_mod:
+        try:
+            registry = reg_mod.EngineRegistry(os.path.dirname(__file__))
+            registry_report = registry.boot()
+            print(f"  Registry: {registry_report['loaded']}/{registry_report['total']} loaded "
+                  f"({registry_report['failed']} failed, {registry_report['planned']} planned)")
+        except Exception as e:
+            print(f"  Registry: {e}")
+
+    governance_status = "unknown"
+    if policy_mod:
+        try:
+            engine = policy_mod.PolicyEngine(os.path.dirname(__file__))
+            governance_result = engine.evaluate()
+            governance_status = governance_result.get("status", "unknown")
+            print(f"  Governance: {governance_status} | score={governance_result.get('governance_score', 0)}/100")
+        except Exception as e:
+            print(f"  Governance: error — {e}")
 
     if cap_graph_mod:
+        if registry is not None:
+            try:
+                cap_graph_mod.graph.wire_from_registry(registry)
+            except Exception:
+                pass
+        print("\n  Capability Graph:")
         cap_graph_mod.graph.print_capability_table()
     else:
         print("  [WARN] Capability Graph not loaded.")
 
-    if reg_mod:
-        try:
-            registry = reg_mod.EngineRegistry(os.path.dirname(__file__))
-            report = registry.boot()
-            print(f"  Engine Registry: {report['loaded']}/{report['total']} loaded "
-                  f"({report['failed']} failed, {report['planned']} planned)")
-        except Exception as e:
-            print(f"  Registry: {e}")
-
-    # Module presence quick-check
     modules = [
         ("AEGIS-Kernel/capability_graph.py",  "Capability Graph"),
         ("AEGIS-Kernel/registry.py",           "Engine Registry"),
         ("AEGIS-Runtime/dispatcher.py",        "Runtime Dispatcher"),
         ("AEGIS-Orchestrator/model_router.py", "Model Router"),
         ("AEGIS-Compiler/pipeline.py",         "Compiler Pipeline"),
-        ("AEGIS-Compiler/contract.py",         "Compiler Contract"),
         ("AEGIS-Governance/policy_engine.py",  "Governance Engine"),
         ("AEGIS-Consensus/voting_engine.py",   "Consensus Engine"),
         ("AEGIS-Memory/memory_engine.py",      "Memory Engine"),
@@ -345,7 +390,11 @@ def run_status():
         full = os.path.join(os.path.dirname(__file__), rel_path)
         icon = "\033[92m✓\033[0m" if os.path.exists(full) else "\033[91m✗\033[0m"
         print(f"  {icon}  {label}")
-    print("═" * 65 + "\n")
+    print("═" * 75 + "\n")
+    return {
+        "registry": registry_report,
+        "governance": governance_status,
+    }
 
 
 def run_quickstart():
@@ -378,7 +427,7 @@ def run_quickstart():
         time.sleep(0.8)
 
     print("═" * 65)
-    print("  ✅ You're ready! Start with:  \033[1maestis plan \"<your task>\"\033[0m")
+    print("  ✅ You're ready! Start with:  \033[1maegis plan \"<your task>\"\033[0m")
     print("═" * 65 + "\n")
 
 def main():

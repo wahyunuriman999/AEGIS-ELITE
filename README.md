@@ -22,11 +22,77 @@ PROPRIETARY AND CONFIDENTIAL
 Copyright (c) 2024-2026 Wahyu Nur Iman. All rights reserved.
 ```
 
+## Run the new API & Studio
+
+Run the Flask API (default port 8000):
+
+```bash
+python api/app.py
+```
+
+Run the Studio (browser UI, default port 8080):
+
+```bash
+python AEGIS-Studio/web_server.py
+# open http://127.0.0.1:8080
+```
+
+If you want API auth, set `AEGIS_API_TOKEN` before starting the API and use it as a Bearer token for `/runs` and `/benchmark`.
+
+## Security artifacts
+
+- `security/pip-audit.json`
+- `security/pip-audit-utf8.json`
+- `security/SCAN_SUMMARY.md`
+- `security/bandit-report.json`
+- `security/safety-report.json`
+
 ---
+## Studio Proxy & Secrets
 
-## What is AEGIS Elite?
+To avoid exposing the API token to the browser, the Studio server uses a local proxy endpoint `GET /proxy/runs` on the API which accepts a server-side secret.
 
-AEGIS Elite is not a chatbot. Not a code generator.
+1. Set a shared secret for the Studio server and API:
+
+```bash
+export STUDIO_PROXY_SECRET="a-strong-random-secret"
+export AEGIS_API_TOKEN="another-secret-for-writes"
+```
+
+2. Start the API (prefer waitress in production):
+
+```bash
+export AEGIS_USE_WAITRESS=1
+python -m api.app
+```
+
+3. Start the Studio (it will send the secret server-side when proxying):
+
+```bash
+python AEGIS-Studio/web_server.py
+# open http://127.0.0.1:8080
+```
+
+## Backups & Migrations
+
+Simple helpers are provided:
+
+```bash
+python scripts/backup_db.py         # create timestamped copy of api/state.db
+python -c "from api import migrations; migrations.ensure_base()"  # apply base migrations
+```
+
+## Install dependencies (local dev)
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+
+## What is AEGIS WAJA?
+
+AEGIS WAJA is not a chatbot. Not a code generator.
 
 It is an **AI Engineering Operating System** — a platform that orchestrates the entire software engineering lifecycle: from requirements through deployment.
 
@@ -61,7 +127,7 @@ If [AEGIS-Core](https://github.com/wahyunuriman999/AEGIS-Core) is the **kernel**
 
 ## Core vs Elite Comparison
 
-| Aspect | AEGIS-Core | AEGIS-Elite |
+| Aspect | AEGIS-Core | AEGIS-WAJA |
 |---|---|---|
 | **Purpose** | Foundation / protocol | Full AI engineering platform |
 | **Focus** | Core reasoning & pipeline | End-to-end orchestration |
@@ -179,7 +245,7 @@ A **hard veto** from Security or Architect Agent = commit is **immediately rejec
 
 ## Cognitive Memory System
 
-AEGIS Elite remembers *why* decisions were made, not just *what* was decided:
+AEGIS WAJA remembers *why* decisions were made, not just *what* was decided:
 
 | Subsystem | Function |
 |---|---|
@@ -202,7 +268,7 @@ python aegis.py status
 
 > Measured across 10 real projects (Q2 2026)
 
-| Metric | Standard AI | AEGIS Elite v14 | Delta |
+| Metric | Standard AI | AEGIS WAJA v14 | Delta |
 |---|---|---|---|
 | Bug rate (per 100 LOC) | 18 | **5** | -72% |
 | Test coverage | 71% | **92%** | +21 pts |
@@ -309,7 +375,7 @@ of this software is strictly prohibited without explicit
 written permission from the author.
 ```
 
-**Interested in using AEGIS Elite for your team or company?**
+**Interested in using AEGIS WAJA for your team or company?**
 Contact: **wahyunuriman999@gmail.com**
 
 ---
