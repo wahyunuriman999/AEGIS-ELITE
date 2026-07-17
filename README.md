@@ -314,6 +314,16 @@ python aegis.py install <pack>          # Install a domain pack
 
 ---
 
+
+
+## 🔥 Rapid Execution Partners (Low-Code/No-Code Support)
+
+AEGIS Elite includes native **Execution-First Adapters** for the industry's best visual and rapid-app platforms. Rather than writing code from scratch, AEGIS can instantly output optimized resources and connection graphs for:
+- **[Appsmith](https://www.appsmith.com/)**: Native queries, JavaScript transformers, and REST/GraphQL adapters for instant internal tools.
+- **[ILLA Builder](https://illacloud.com/)**: Action structures and UI logic graphs for developer-centric web applications.
+- **[Teable](https://teable.io/)**: Relational Postgres schema generation for instant no-code Airtable-like systems.
+- **[Noodl](https://www.noodl.net/)**: Node-based logic architectures for visual full-stack web applications.
+
 ## Extension Marketplace
 
 | Pack | Domain | Features |

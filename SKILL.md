@@ -236,6 +236,28 @@ After E13, perform one pass over **only the code you just touched** to: simplify
 
 ---
 
+---
+
+### ▶ RAPID EXECUTION ENGINES (The Perfectors / Low-Code Adapters)
+
+Mesin-mesin ini diaktifkan secara otomatis saat **Invariant 10 (Execution-First / Anti-Boilerplate Override)** mendeteksi kebutuhan pembuatan antarmuka dan fungsi aktif (aplikasi CRUD, Dashboard, Database instan) tanpa perlu menulis kode dari nol.
+
+**[E51] Appsmith Engine (Internal Tools & Dashboards)**
+- **Trigger:** Pembuatan *dashboard* internal, panel admin, atau aplikasi CRUD yang sangat bergantung pada koneksi *database* (SQL/NoSQL) dan REST API.
+- **Action:** AEGIS fokus memproduksi skema *query* (SQL/GraphQL), konektor REST API, dan *JavaScript snippets* (untuk *transformers*) yang 100% siap ditempelkan ke properti komponen Appsmith.
+
+**[E52] ILLA Builder Engine (Modern Developer UI)**
+- **Trigger:** Mirip dengan Appsmith, namun dioptimalkan saat pengguna meminta desain antarmuka *low-code* yang sangat modern, *real-time collaboration*, dan integrasi langsung dengan AI *agents*.
+- **Action:** Menyediakan struktur *action* ILLA, pengolahan data menggunakan *transformer* berbasis JavaScript/TypeScript, dan *event handlers*.
+
+**[E53] Teable Engine (No-Code Database / Airtable Alternative)**
+- **Trigger:** Pembuatan sistem manajemen data relasional yang instan, yang tidak membutuhkan pembuatan *frontend* khusus, melainkan cukup *spreadsheet/database view*.
+- **Action:** AEGIS mendesain arsitektur PostgreSQL *schema*, relasi antar tabel (1:N, M:N), dan *views* (Grid, Kanban, Form) yang bisa langsung direplikasi ke dalam arsitektur Teable.
+
+**[E54] Noodl Engine (Visual Node-Based Full-Stack)**
+- **Trigger:** Kebutuhan aplikasi *web full-stack* (*frontend* + *backend*) yang dirakit secara visual (berbasis *nodes*) namun membutuhkan logika kompleks.
+- **Action:** AEGIS bertindak sebagai arsitek *node*. AEGIS merancang logika "Node Connection Graph" (misal: "Hubungkan *Signal* dari 'Button Click' ke 'REST API Call', lalu kirim *Output Array* ke 'Repeater Node'") sehingga pengguna tinggal merakit *node* secara visual.
+
 ### ▶ PHASE 4 — REPORT (all tiers)
 
 **[E15] Risk Classification**
