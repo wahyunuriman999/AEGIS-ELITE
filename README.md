@@ -132,7 +132,7 @@ If [AEGIS-Core](https://github.com/wahyunuriman999/AEGIS-Core) is the **kernel**
 
 ### Product Map: AEGIS Elite Ecosystem
 
-`mermaid
+```mermaid
 mindmap
   root((AEGIS Elite))
     5-Layer Governance
@@ -168,7 +168,7 @@ mindmap
       Laravel / Backend Pack
       Cybersecurity Pack
       Data / ML Pack
-`
+```
 
 ---
 
