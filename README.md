@@ -143,6 +143,8 @@ If [AEGIS-Core](https://github.com/wahyunuriman999/AEGIS-Core) is the **kernel**
 | **Benchmarks** | — | **6-metric verifiable benchmark** vs industry baseline |
 | **Extensions** | — | Marketplace with **7 domain packs** |
 | **Enterprise** | — | SOC2, GDPR, audit trail, RBAC, SSO |
+| **Execution-First** | — | **Invariant 10** Anti-Boilerplate enforcement |
+| **Rapid Execution** | — | **Native Support** for Appsmith, ILLA, Teable, Noodl |
 | **Learning curve** | ⭐⭐⭐⭐⭐ Easy | ⭐⭐⭐ Steeper |
 | **Enterprise readiness** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | **Best for** | Open source, community, integration | **Enterprise, regulated environments, large teams** |
