@@ -181,7 +181,7 @@ mindmap
 
 ## Core vs Elite Comparison
 
-| Aspect | AEGIS-Core | AEGIS-WAJA |
+| Aspect | AEGIS-Core | AEGIS-ELITE |
 |---|---|---|
 | **Purpose** | Foundation / protocol | Full AI engineering platform |
 | **Focus** | Core reasoning & pipeline | End-to-end orchestration |
@@ -454,7 +454,7 @@ of this software is strictly prohibited without explicit
 written permission from the author.
 ```
 
-**Interested in using AEGIS WAJA for your team or company?**
+**Interested in using AEGIS ELITE for your team or company?**
 Contact: **wahyunuriman999@gmail.com**
 
 ---
