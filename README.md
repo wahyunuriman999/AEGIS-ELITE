@@ -168,6 +168,13 @@ mindmap
       Laravel / Backend Pack
       Cybersecurity Pack
       Data / ML Pack
+    UI Design Engine
+      Styles DB (90+ styles)
+      Color Palettes
+      Typography (Google Fonts)
+      Charts & Motion (GSAP)
+      UX Guidelines
+      20+ Stack Configs
 ```
 
 ---
@@ -344,6 +351,15 @@ python aegis.py audit                   # Full architecture compliance report
 python aegis.py score                   # Generate governance score card
 python aegis.py improve --task "<x>"    # Auto-refactor with consensus
 
+# UI Design Intelligence
+python aegis.py design "<query>"                        # Query design database (default: style)
+python aegis.py design "<query>" --domain color         # Query color palettes
+python aegis.py design "<query>" --domain typography    # Query font pairings
+python aegis.py design "<query>" --domain chart         # Query chart recommendations
+python aegis.py design "<query>" --domain motion        # Query GSAP animation skeletons
+python aegis.py design "<query>" --domain ux            # Query UX guidelines
+python aegis.py design domains                          # List all available domains
+
 # Memory
 python aegis.py memory list             # View ADR ledger
 python aegis.py knowledge sync          # Sync domain knowledge
@@ -412,6 +428,10 @@ AEGIS-ELITE/
 ├── AEGIS-Analytics/       # Telemetry & engineering insights
 ├── AEGIS-Risk/            # Blast-radius analysis
 ├── AEGIS-SDK/             # Enforced integration contract
+├── AEGIS-Studio/          # Studio dashboard & UI intelligence
+│   ├── ui_design_engine/  # UI/UX Design Engine (ui-ux-pro-max)
+│   │   └── src/ui-ux-pro-max/data/   # 13 CSV databases (styles, colors, fonts, etc.)
+│   └── web_server.py      # Studio web interface
 ├── aegis.py                # CLI entry point
 ├── aegis_manifest.yaml     # Single source of truth (all modules)
 ├── QUICKSTART.md           # 10-minute guide
