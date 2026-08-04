@@ -301,7 +301,7 @@ A **hard veto** from Security or Architect Agent = commit is **immediately rejec
 
 ## Cognitive Memory System
 
-AEGIS WAJA remembers *why* decisions were made, not just *what* was decided:
+AEGIS ELITE remembers *why* decisions were made, not just *what* was decided:
 
 | Subsystem | Function |
 |---|---|
@@ -324,7 +324,7 @@ python aegis.py status
 
 > Measured across 10 real projects (Q2 2026)
 
-| Metric | Standard AI | AEGIS WAJA v14 | Delta |
+| Metric | Standard AI | AEGIS ELITE v14 | Delta |
 |---|---|---|---|
 | Bug rate (per 100 LOC) | 18 | **5** | -72% |
 | Test coverage | 71% | **92%** | +21 pts |
