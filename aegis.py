@@ -30,6 +30,7 @@ orchestrator_mod = load_module("workflow_engine", os.path.join(os.path.dirname(_
 plugin_mod = load_module("plugin_manager", os.path.join(os.path.dirname(__file__), "AEGIS-Extension", "plugin_manager.py"))
 studio_mod = load_module("web_server", os.path.join(os.path.dirname(__file__), "AEGIS-Studio", "web_server.py"))
 git_hooks_mod = load_module("git_hooks", os.path.join(os.path.dirname(__file__), "AEGIS-Kernel", "git_hooks.py"))
+design_mod = load_module("ui_design_engine", os.path.join(os.path.dirname(__file__), "AEGIS-Studio", "ui_design_engine.py"))
 
 def print_banner():
     print("""
@@ -397,6 +398,17 @@ def run_status():
     }
 
 
+def run_design(query, domain, max_results):
+    """Query the UI/UX Design Engine backed by ui-ux-pro-max CSV database."""
+    if not design_mod:
+        print("[ERROR] UI Design Engine not found. Check AEGIS-Studio installation.")
+        return
+    if query == "domains":
+        design_mod.list_domains()
+    else:
+        design_mod.run_design_query(query, domain, max_results)
+
+
 def run_quickstart():
     """Interactive 60-second onboarding experience for new AEGIS users."""
     import sys
@@ -494,6 +506,12 @@ def main():
     # quickstart — Onboarding experience
     subparsers.add_parser("quickstart", help="60-second onboarding for new AEGIS users")
 
+    # design — UI/UX Design Intelligence query
+    design_parser = subparsers.add_parser("design", help="Query UI/UX design intelligence (styles, colors, fonts, charts)")
+    design_parser.add_argument("query", help="Search query or 'domains' to list all available domains")
+    design_parser.add_argument("--domain", default="style", help="Domain: style, color, typography, chart, ux, icons, landing, motion, react, web, google-fonts, product")
+    design_parser.add_argument("--top", type=int, default=3, help="Max number of results (default: 3)")
+
     args = parser.parse_args()
     
     if args.command == "init":
@@ -553,6 +571,8 @@ def main():
         run_status()
     elif args.command == "quickstart":
         run_quickstart()
+    elif args.command == "design":
+        run_design(args.query, args.domain, args.top)
     else:
         parser.print_help()
 

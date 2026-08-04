@@ -79,6 +79,7 @@ These ten rules are active on every task, at every tier, at every phase. No engi
     - **Deep Tracing (Lazy in solution, never in reading):** Before climbing the ladder below, you MUST fully read the touched code and trace the real execution flow. Understand the problem deeply first.
     - **The 7-Rung Ladder:** (1) Does this need to exist? → no: skip it. (2) Already in codebase? → reuse. (3) Stdlib does it? → use it. (4) Native platform feature? → use it. (5) Installed dependency? → use it. (6) One line? → one line. (7) Only then: write the absolute minimum that works.
     - **Zero Negligence:** Never compromise on trust-boundary validation, data-loss handling, security, or accessibility just to achieve minimalism.
+13. **UI Design Engine (Structured Design Intelligence)** — When building any UI, you MUST query the AEGIS Design Engine before proposing styles, colors, or fonts. Run: `aegis design "<query>" --domain <style|color|typography|chart|ux|icons|motion>`. Use the structured CSV-backed results (colors, AI prompt keywords, CSS variables, implementation checklist) as the source of truth for all design decisions, not personal preference.
 
 ---
 
