@@ -79,7 +79,7 @@ These ten rules are active on every task, at every tier, at every phase. No engi
     - **Deep Tracing (Lazy in solution, never in reading):** Before climbing the ladder below, you MUST fully read the touched code and trace the real execution flow. Understand the problem deeply first.
     - **The 7-Rung Ladder:** (1) Does this need to exist? → no: skip it. (2) Already in codebase? → reuse. (3) Stdlib does it? → use it. (4) Native platform feature? → use it. (5) Installed dependency? → use it. (6) One line? → one line. (7) Only then: write the absolute minimum that works.
     - **Zero Negligence:** Never compromise on trust-boundary validation, data-loss handling, security, or accessibility just to achieve minimalism.
-13. **UI Design Engine (Structured Design Intelligence)** — When building any UI, you MUST query the AEGIS Design Engine before proposing styles, colors, or fonts. Run: `aegis design "<query>" --domain <style|color|typography|chart|ux|icons|motion>`. Use the structured CSV-backed results (colors, AI prompt keywords, CSS variables, implementation checklist) as the source of truth for all design decisions, not personal preference.
+13. **UI Design Engine (Designer Mind Integration)** — When building any UI, you MUST query the **AEGIS Design Engine (backed by Designer Mind OS)** before proposing styles, colors, or fonts. Run: `aegis design "<query>" --domain <style|color|typography|chart|ux|icons|motion>` or load `designer-mind` skill directly. Use the structured CSV-backed results and Designer Mind's cinematic premium design intelligence (colors, AI prompt keywords, CSS variables, glassmorphism rules, implementation checklist) as the absolute source of truth for all frontend visual decisions, not simple default styles or personal preference.
 
 ---
 
@@ -280,6 +280,10 @@ Mesin-mesin ini diaktifkan secara otomatis saat **Invariant 10 (Execution-First 
 **[E56] Dynamic Subtitle & Overlay Engine**
 - **Trigger:** Pemrosesan video pendek (Reels, TikTok, Shorts) yang membutuhkan teks dinamis, animasi per kata, atau manipulasi visual *frame-by-frame*.
 - **Action:** Mencegah penggunaan FFmpeg text overlay standar yang kaku. AEGIS langsung membangun *rendering pipeline* kustom (misalnya menggunakan canvas overlay di worker khusus atau `fluent-ffmpeg` digabungkan dengan manipulasi koordinat) untuk menghasilkan subtitle bergaya modern.
+
+**[E57] Designer Mind Engine (Cinematic UI/UX & Frontend Excellence)**
+- **Trigger:** Pembuatan website, web app, mobile app, dashboard, landing page, atau antarmuka apapun yang menuntut standar visual premium, komposisi modern, dan *micro-animations*.
+- **Action:** AEGIS mendelegasikan keputusan tata letak, palet warna (HSL/vibrant), hierarki visual, dan tipografi ke *Designer Mind Skill*. Memastikan tidak ada output UI yang terlihat generik atau murahan, melainkan harus berkelas *production-ready* dan sangat estetik.
 
 ### ▶ PHASE 4 — REPORT (all tiers)
 
