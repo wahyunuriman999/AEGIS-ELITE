@@ -12,7 +12,7 @@ import json
 import unittest
 
 # Add AEGIS paths to sys.path so we can import the modules
-aegis_root = r'C:\Users\ROG G532 LV\.gemini\config\skills\aegis'
+aegis_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(os.path.join(aegis_root, 'AEGIS-Compiler'))
 sys.path.append(os.path.join(aegis_root, 'AEGIS-Runtime'))
 import importlib.util
