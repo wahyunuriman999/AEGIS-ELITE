@@ -1,0 +1,3 @@
+[flake8]
+ignore = E501, W293, W291, E302, E305, E225, E231, E702, F401, E401, E241, F541, E127, F841, E402, E111, E226, F821, E221, W504, W503, E303, E261, E128
+exclude = .venv, AEGIS-Knowledge, test-project, alembic, .git

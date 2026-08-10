@@ -6,7 +6,7 @@ def compile_knowledge():
     print("Initiating AEGIS Knowledge Compiler v2.0 (Living OS Mode)...")
     time.sleep(1)
     
-    aegis_root = r'C:\Users\ROG G532 LV\.gemini\config\skills\aegis'
+    aegis_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     graph_path = os.path.join(aegis_root, 'knowledge.graph.json')
     output_path = os.path.join(aegis_root, 'runtime_image.json')
     

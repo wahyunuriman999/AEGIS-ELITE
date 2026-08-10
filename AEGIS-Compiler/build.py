@@ -13,7 +13,7 @@ def build_cognitive_pipeline():
     print("Initiating AEGIS Pipeline Compiler v12.0 (Standard Specification Mode)...")
     time.sleep(0.5)
     
-    aegis_root = r'C:\Users\ROG G532 LV\.gemini\config\skills\aegis'
+    aegis_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     knowledge_path = os.path.join(aegis_root, 'AEGIS-Knowledge', 'knowledge.graph.json')
     runtime_path = os.path.join(aegis_root, 'runtime_image.json')
     instruction_path = os.path.join(aegis_root, 'instruction_graph.json')

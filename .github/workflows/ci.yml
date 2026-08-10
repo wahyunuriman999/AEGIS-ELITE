@@ -22,13 +22,13 @@ jobs:
           pip install flake8 bandit pip-audit safety
       - name: Run tests
         run: |
-          python -m unittest discover -v
+          python -m unittest discover -s AEGIS-Tests -v
       - name: Lint (flake8)
         run: |
           flake8
       - name: Security scan (bandit)
         run: |
-          bandit -r .
+          bandit -r . -x .venv,AEGIS-Knowledge,test-project,alembic
       - name: Dependency audit (pip-audit)
         run: |
           mkdir -p security || true

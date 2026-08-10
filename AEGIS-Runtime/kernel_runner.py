@@ -63,7 +63,7 @@ class AegisVirtualMachine:
         print("\n[KERNEL] Event Loop Completed Successfully. Process Terminated.")
         
 if __name__ == "__main__":
-    aegis_root = r'C:\Users\ROG G532 LV\.gemini\config\skills\aegis'
+    aegis_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     vm = AegisVirtualMachine(aegis_root)
     vm.boot()
     vm.execute_event_loop("Build Kubernetes Cluster Architecture")
