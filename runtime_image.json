@@ -1,14 +1,7 @@
 {
-  "build_timestamp": 1783806253.9898248,
+  "build_timestamp": 1786341091.8540404,
   "kernel_version": "v12.0.0-executable-kernel",
-  "provider_registry": [
-    "9router",
-    "anthropic",
-    "gemini",
-    "litellm",
-    "ollama",
-    "openai"
-  ],
+  "provider_registry": [],
   "capabilities": [
     "core.reasoning",
     "core.planning",
