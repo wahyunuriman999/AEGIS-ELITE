@@ -11,7 +11,7 @@ description: >
   refactors, architecture/API/database/frontend decisions — where disciplined,
   evidence-driven engineering matters.
 version: 13.0.0
-domains: [foundation, engineering, architecture, backend, database, frontend]
+domains: [foundation, engineering, architecture, backend, database, frontend, designer-mind]
 ---
 
 ```python
