@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designer Mind OS — Master Edition v5.0</title>
+    <meta name="description" content="Cinematic Experimental Web Design Engine.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #030303;
+            --bg-glass: rgba(10, 10, 10, 0.6);
+            --text-1: #ffffff;
+            --text-2: #a3a3a3;
+            --text-3: #525252;
+            --accent: #e07a3a;
+            --accent-glow: rgba(224, 122, 58, 0.15);
+            --border-glass: rgba(255, 255, 255, 0.05);
+            
+            --font-display: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        
+        body {
+            background-color: var(--bg); color: var(--text-1);
+            font-family: var(--font-display); -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; line-height: 1.4;
+        }
+
+        /* Custom Cursor */
+        #cursor-dot, #cursor-ring {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+            border-radius: 50%; pointer-events: none; z-index: 9999;
+        }
+        #cursor-dot { width: 8px; height: 8px; background: var(--text-1); transition: width 0.3s, height 0.3s; }
+        #cursor-ring { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.2); transition: width 0.3s, height 0.3s, border-color 0.3s; }
+        body:hover #cursor-ring { border-color: rgba(255,255,255,0.5); }
+        a:hover ~ #cursor-dot, button:hover ~ #cursor-dot, .magnetic:hover ~ #cursor-dot { width: 0; height: 0; }
+        a:hover ~ #cursor-ring, button:hover ~ #cursor-ring, .magnetic:hover ~ #cursor-ring { width: 60px; height: 60px; border-color: var(--accent); background: var(--accent-glow); backdrop-filter: blur(2px); }
+
+        /* Typography */
+        h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+        .text-massive { font-size: clamp(4rem, 10vw, 10rem); text-transform: uppercase; }
+        .text-huge { font-size: clamp(3rem, 7vw, 7rem); }
+        .text-large { font-size: clamp(2rem, 4vw, 3.5rem); }
+        .text-sub { font-size: clamp(0.8rem, 1.2vw, 1rem); color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600;}
+
+        /* Minimal Nav */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 32px 48px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; mix-blend-mode: difference;
+        }
+        .nav-logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 20px 40px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em;
+            text-decoration: none; border: 1px solid var(--border-glass); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); color: var(--text-1);
+            border-radius: 100px;
+        }
+        .btn:hover { background: var(--text-1); color: var(--bg); transform: scale(1.05); }
+        
+        /* Noise Overlay & Atmosphere */
+        .noise {
+            position: fixed; inset: 0; pointer-events: none; z-index: 9000; opacity: 0.04; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        .ambient-light {
+            position: fixed; width: 60vw; height: 60vw; border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            pointer-events: none; z-index: 0; filter: blur(60px); opacity: 0.5;
+        }
+
+        /* Hero Layered Parallax */
+        #hero {
+            height: 150vh; /* Extra scroll space for explosion */
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        .hero-sticky {
+            position: sticky; top: 0; height: 100vh; width: 100%;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; perspective: 2000px;
+        }
+        .hero-bg-layer {
+            position: absolute; inset: -10%; z-index: 1;
+            transform: translateZ(-500px) scale(1.5);
+        }
+        .hero-bg-layer img {
+            width: 100%; height: 100%; object-fit: cover; filter: brightness(0.2) saturate(1.2);
+        }
+        .hero-bg-layer::after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg) 100%);
+        }
+        .hero-glass-card {
+            position: absolute; z-index: 2;
+            width: 300px; height: 400px; background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-glass); backdrop-filter: blur(16px);
+            border-radius: 24px; left: 15%; top: 20%;
+            transform: translateZ(-200px) rotateY(15deg);
+        }
+        .hero-glass-card-2 {
+            position: absolute; z-index: 2;
+            width: 250px; height: 350px; background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-glass); backdrop-filter: blur(12px);
+            border-radius: 24px; right: 10%; bottom: 15%;
+            transform: translateZ(100px) rotateY(-10deg);
+        }
+        .hero-content-layer {
+            position: relative; z-index: 3; text-align: center;
+            transform: translateZ(0px); display: flex; flex-direction: column; align-items: center;
+        }
+        .hero-title {
+            background: linear-gradient(180deg, #fff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 24px; transform-style: preserve-3d;
+        }
+        
+        /* Cinematic Vertical Scroll Showcase */
+        .showcase-container {
+            position: relative; margin-top: -50vh; z-index: 10;
+        }
+        .showcase-sticky {
+            position: relative; height: 100vh; width: 100%; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            perspective: 1500px; background: var(--bg);
+        }
+        .showcase-slide {
+            position: absolute; inset: 0; opacity: 0;
+            display: flex; align-items: center; justify-content: center;
+            transform-style: preserve-3d;
+        }
+        .showcase-slide img {
+            position: absolute; width: 70vw; height: 80vh; object-fit: cover;
+            border-radius: 12px; filter: brightness(0.6);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            will-change: transform, opacity;
+        }
+        .showcase-content {
+            position: relative; z-index: 2; text-align: center;
+            transform: translateZ(200px);
+        }
+        .slide-title {
+            text-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            background: linear-gradient(180deg, #fff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        /* Interactive About & Rules */
+        .interactive-text-section {
+            position: relative; z-index: 10; background: var(--bg);
+            padding: 20vh 5vw; display: flex; flex-direction: column; gap: 20vh;
+        }
+        .reveal-text {
+            font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 700; color: var(--text-3);
+            line-height: 1.1; max-width: 1400px; letter-spacing: -0.03em;
+        }
+        .reveal-word { color: var(--text-1); transition: color 0.4s ease, text-shadow 0.4s ease; }
+        
+        /* 3D Rules Assembly */
+        .rules-wrapper {
+            position: relative; perspective: 1200px;
+        }
+        .rules-list {
+            display: flex; flex-direction: column; gap: 24px; margin-top: 80px;
+            transform-style: preserve-3d;
+        }
+        .rule-item {
+            display: flex; align-items: center; gap: 32px; 
+            padding: 32px 48px; background: var(--bg-glass);
+            border: 1px solid var(--border-glass); border-radius: 16px;
+            backdrop-filter: blur(20px); transform-origin: left center;
+            transform: rotateX(45deg) translateY(100px) translateZ(-200px); opacity: 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transition: border-color 0.3s ease;
+        }
+        .rule-item:hover { border-color: rgba(255,255,255,0.2); }
+        .rule-number { color: var(--accent); font-family: var(--font-mono); font-size: 1.5rem; }
+        .rule-text { font-size: 2rem; font-weight: 600; color: var(--text-1); letter-spacing: -0.02em; }
+
+        /* Promo Video */
+        #promo-video {
+            position: relative; width: 100%; height: 100vh; background: #000;
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+        .promo-scene {
+            position: absolute; inset: 0; opacity: 0; display: flex;
+            align-items: center; justify-content: center; flex-direction: column;
+            transform-style: preserve-3d; 
+        }
+        .promo-scene img {
+            position: absolute; inset: -5%; width: 110%; height: 110%; object-fit: cover;
+            filter: brightness(0.3) saturate(0); 
+        }
+        .promo-text { position: relative; z-index: 2; text-align: center; mix-blend-mode: exclusion; }
+        
+        .footer { padding: 15vh 5vw; text-align: center; background: var(--bg); position: relative; z-index: 10; }
+        .magnetic { display: inline-block; }
+    </style>
+</head>
+<body>
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+    <div class="noise"></div>
+    <div class="ambient-light"></div>
+
+    <nav>
+        <div class="nav-logo">DM OS</div>
+        <a href="https://github.com/wahyunuriman999/Designer-Mind-Skill" class="text-sub magnetic" style="text-decoration:none; color:var(--text-1);">GITHUB</a>
+    </nav>
+
+    <!-- CINEMATIC HERO (Exploded Assembly) -->
+    <section id="hero">
+        <div class="hero-sticky">
+            
+            <div class="hero-bg-layer hero-element">
+                <img src="images/01-fintech.jpg">
+            </div>
+            
+            <div class="hero-glass-card hero-element"></div>
+            <div class="hero-glass-card-2 hero-element"></div>
+            
+            <div class="hero-content-layer hero-element">
+                <h1 class="text-massive hero-title">Designer<br>Mind OS</h1>
+                <div class="text-sub hero-sub" style="margin-bottom: 40px; color: var(--accent);">MASTER EDITION V5.0</div>
+                <p class="hero-p" style="font-size: 1.25rem; color: var(--text-2); max-width: 600px; margin: 0 auto 40px;">
+                    An elite design intelligence. We do not generate templates.<br>We design digital experiences.
+                </p>
+                <div class="hero-scroll" style="color: var(--text-3); letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.85rem; margin-top: 8vh;">
+                    Scroll to Assemble
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- CINEMATIC 3D Z-AXIS SHOWCASE (10 Outputs) -->
+    <section class="showcase-container" id="showcase">
+        <div class="showcase-sticky">
+            
+            <div class="showcase-slide slide-1">
+                <img src="images/02-ai-dashboard.jpg">
+                <div class="showcase-content">
+                    <div class="text-sub slide-sub">Data & Analytics</div>
+                    <h2 class="text-huge slide-title">ABSOLUTE<br>PRECISION.</h2>
+                </div>
+            </div>
+
+            <div class="showcase-slide slide-2">
+                <img src="images/03-mobile-app.jpg">
+                <div class="showcase-content">
+                    <div class="text-sub slide-sub">Mobile Interfaces</div>
+                    <h2 class="text-huge slide-title">TACTILE<br>PERFECTION.</h2>
+                </div>
+            </div>
+
+            <div class="showcase-slide slide-3">
+                <img src="images/04-brand-identity.jpg">
+                <div class="showcase-content">
+                    <div class="text-sub slide-sub">Brand Identity</div>
+                    <h2 class="text-huge slide-title">VISUAL<br>DNA.</h2>
+                </div>
+            </div>
+
+            <div class="showcase-slide slide-4">
+                <img src="images/05-product-showcase.jpg">
+                <div class="showcase-content">
+                    <div class="text-sub slide-sub">Product Campaigns</div>
+                    <h2 class="text-huge slide-title">CINEMATIC<br>REVEALS.</h2>
+                </div>
+            </div>
+
+            <div class="showcase-slide slide-5">
+                <img src="images/06-ecommerce.jpg">
+                <div class="showcase-content">
+                    <div class="text-sub slide-sub">E-Commerce</div>
+                    <h2 class="text-huge slide-title">SEAMLESS<br>FLOW.</h2>
+                </div>
+            </div>
+
+            <div class="showcase-slide slide-6">
+                <img src="images/07-poster.jpg">
+                <div class="showcase-content">
+                    <div class="text-sub slide-sub">Editorial & Print</div>
+                    <h2 class="text-huge slide-title">SPATIAL<br>HARMONY.</h2>
+                </div>
+            </div>
+
+            <div class="showcase-slide slide-7">
+                <img src="images/08-social-campaign.jpg">
+                <div class="showcase-content">
+                    <div class="text-sub slide-sub">Social Campaigns</div>
+                    <h2 class="text-huge slide-title">BOLD<br>ATTENTION.</h2>
+                </div>
+            </div>
+
+            <div class="showcase-slide slide-8">
+                <img src="images/09-ai-agent.jpg">
+                <div class="showcase-content">
+                    <div class="text-sub slide-sub">AI Interfaces</div>
+                    <h2 class="text-huge slide-title">FUTURE<br>SYSTEMS.</h2>
+                </div>
+            </div>
+
+            <div class="showcase-slide slide-9">
+                <img src="images/10-data-viz.jpg">
+                <div class="showcase-content">
+                    <div class="text-sub slide-sub">Data Visualization</div>
+                    <h2 class="text-huge slide-title">CLARITY<br>FIRST.</h2>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE IDENTITY & RULES -->
+    <section class="interactive-text-section">
+        
+        <!-- Identity Scroll Reveal -->
+        <div style="display:flex; align-items:center;">
+            <p class="reveal-text" id="identity-text">
+                We are not a generator. We are a <span class="reveal-word">design decision engine</span>. 
+                Designer Mind determines <span class="reveal-word">WHAT</span> should exist, 
+                <span class="reveal-word">WHY</span> it should exist, and <span class="reveal-word">HOW</span> 
+                it should look, behave, and feel — then implements it with <span class="reveal-word">production-ready precision</span>.
+            </p>
+        </div>
+
+        <!-- 3D Rules Assembly -->
+        <div class="rules-wrapper">
+            <div class="text-sub" style="margin-bottom: 24px;">The 10 Golden Rules</div>
+            <h2 class="text-huge" style="margin-bottom: 40px;">ZERO<br>EXCEPTIONS.</h2>
+            
+            <div class="rules-list" id="rules-container">
+                <div class="rule-item"><span class="rule-number">01</span><span class="rule-text">Design with intention.</span></div>
+                <div class="rule-item"><span class="rule-number">02</span><span class="rule-text">Hierarchy before decoration.</span></div>
+                <div class="rule-item"><span class="rule-number">03</span><span class="rule-text">Typography before effects.</span></div>
+                <div class="rule-item"><span class="rule-number">04</span><span class="rule-text">Functional interaction before decorative interaction.</span></div>
+                <div class="rule-item"><span class="rule-number">05</span><span class="rule-text">Premium means better decisions.</span></div>
+                <div class="rule-item"><span class="rule-number">06</span><span class="rule-text">Empty space is allowed.</span></div>
+                <div class="rule-item"><span class="rule-number">07</span><span class="rule-text">Do not create generic AI design.</span></div>
+                <div class="rule-item"><span class="rule-number">08</span><span class="rule-text">Do not sacrifice UX for visual effects.</span></div>
+                <div class="rule-item"><span class="rule-number">09</span><span class="rule-text">Preserve approved design decisions.</span></div>
+                <div class="rule-item"><span class="rule-number">10</span><span class="rule-text">When interaction improves the experience - make it interactive.</span></div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- PROMO VIDEO (Autoplaying Cinematic Cuts) -->
+    <section id="promo-video">
+        <div class="promo-scene p-scene-1">
+            <h2 class="text-massive promo-text">NOT A<br>TEMPLATE.</h2>
+        </div>
+        <div class="promo-scene p-scene-2">
+            <img src="images/01-fintech.jpg">
+            <h2 class="text-massive promo-text" style="color:var(--accent);">AN<br>EXPERIENCE.</h2>
+        </div>
+        <div class="promo-scene p-scene-3">
+            <img src="images/03-mobile-app.jpg">
+            <h2 class="text-massive promo-text">DESIGNER<br>MIND.</h2>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <section class="footer">
+        <div class="text-sub" style="margin-bottom: 24px;">THE FINAL COMMAND</div>
+        <h2 class="text-massive" style="margin-bottom: 64px;">NEVER BE<br>GENERIC.</h2>
+        <div class="magnetic">
+            <a href="https://github.com/wahyunuriman999/Designer-Mind-Skill" target="_blank" class="btn">INSTALL SKILL</a>
+        </div>
+    </section>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Magnetic Cursor & Buttons
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1 });
+            gsap.to(cursorRing, { x: e.clientX, y: e.clientY, duration: 0.3 });
+        });
+
+        const magnetics = document.querySelectorAll('.magnetic');
+        magnetics.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = (e.clientX - rect.left) - rect.width / 2;
+                const y = (e.clientY - rect.top) - rect.height / 2;
+                gsap.to(btn, { x: x * 0.4, y: y * 0.4, duration: 0.3, ease: 'power2.out' });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' });
+            });
+        });
+
+        // Hero Parallax Mouse Move
+        const heroSection = document.getElementById('hero');
+        heroSection.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            gsap.to('.hero-bg-layer', { rotationY: x * 5, rotationX: -y * 5, x: -x * 20, y: -y * 20, duration: 1 });
+            gsap.to('.hero-glass-card', { rotationY: 15 + x * 10, rotationX: -y * 10, x: x * 40, y: y * 40, duration: 1.5 });
+            gsap.to('.hero-glass-card-2', { rotationY: -10 + x * 15, rotationX: -y * 15, x: -x * 30, y: -y * 30, duration: 1.2 });
+            gsap.to('.hero-content-layer', { rotationY: x * 3, rotationX: -y * 3, x: x * 15, y: y * 15, duration: 0.5 });
+        });
+
+        // Hero Exploded Assembly Scroll
+        const heroScrollTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1
+            }
+        });
+
+        heroScrollTl
+            .to('.hero-bg-layer', { z: -1000, opacity: 0, duration: 1 }, 0)
+            .to('.hero-glass-card', { z: 500, x: -200, opacity: 0, rotationY: 45, duration: 1 }, 0)
+            .to('.hero-glass-card-2', { z: 600, x: 200, opacity: 0, rotationY: -45, duration: 1 }, 0)
+            .to('.hero-content-layer', { z: 800, scale: 1.5, opacity: 0, duration: 1 }, 0);
+
+        // Cinematic Z-Axis Scroll Showcase (9 Slides)
+        const slides = gsap.utils.toArray('.showcase-slide');
+        slides.forEach((slide, i) => { slide.style.zIndex = slides.length - i; });
+        gsap.set(slides[0], { opacity: 1 });
+        
+        const showcaseTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#showcase",
+                start: "top top",
+                end: "+=600%", // 8 transitions
+                scrub: 1.5, // Smoother scrub
+                pin: true
+            }
+        });
+
+        slides.forEach((slide, i) => {
+            if(i === 0) return;
+            const prevSlide = slides[i-1];
+            
+            showcaseTl
+                // Push previous slide back into Z-space
+                .to(prevSlide.querySelector('img'), { z: -1000, scale: 0.8, opacity: 0, filter: 'brightness(0) blur(20px)', duration: 1.5, ease: 'power2.inOut' }, `step${i}`)
+                .to(prevSlide.querySelector('.showcase-content'), { z: -800, y: -100, opacity: 0, duration: 1.2, ease: 'power2.in' }, `step${i}`)
+                
+                // Bring current slide from foreground Z-space
+                .fromTo(slide, { opacity: 0 }, { opacity: 1, duration: 0.1 }, `step${i}+=0.5`)
+                .fromTo(slide.querySelector('img'), { z: 1000, scale: 1.2, opacity: 0 }, { z: 0, scale: 1, opacity: 1, filter: 'brightness(0.6) blur(0px)', duration: 1.5, ease: 'power3.out' }, `step${i}+=0.5`)
+                .fromTo(slide.querySelector('.showcase-content'), { z: 500, y: 100, opacity: 0 }, { z: 200, y: 0, opacity: 1, duration: 1.5, ease: 'power3.out' }, `step${i}+=0.7`);
+        });
+
+        // Identity Scroll Text Reveal (Lighting up the text)
+        gsap.to('.reveal-word', {
+            color: 'var(--accent)',
+            textShadow: '0 0 20px rgba(224,122,58,0.5)',
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: '#identity-text',
+                start: 'top 75%',
+                end: 'bottom 45%',
+                scrub: 1
+            }
+        });
+
+        // 3D Rules Assembly Scroll
+        gsap.to('.rule-item', {
+            rotateX: 0,
+            y: 0,
+            z: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 1.5,
+            ease: 'expo.out',
+            scrollTrigger: {
+                trigger: '#rules-container',
+                start: 'top 85%',
+                end: 'top 30%',
+                scrub: 1
+            }
+        });
+
+        // Promo Video Autoplay Sequence
+        const promoTl = gsap.timeline({ paused: true, repeat: -1 });
+        promoTl
+            .set('.p-scene-1', { opacity: 1 })
+            .fromTo('.p-scene-1 .promo-text', { scale: 0.8, filter: 'blur(20px)', z: -500 }, { scale: 1, filter: 'blur(0px)', z: 0, duration: 1.5, ease: 'power4.out' })
+            .to('.p-scene-1', { opacity: 0, scale: 1.2, duration: 0.3 }, "+=1")
+            
+            .set('.p-scene-2', { opacity: 1 })
+            .fromTo('.p-scene-2 img', { scale: 1.2, filter: 'brightness(0.1)' }, { scale: 1, filter: 'brightness(0.3)', duration: 2, ease: 'power2.out' })
+            .fromTo('.p-scene-2 .promo-text', { scale: 1.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: 'expo.out' }, "-=1.8")
+            .to('.p-scene-2', { opacity: 0, z: 200, duration: 0.3 }, "+=1.2")
+            
+            .set('.p-scene-3', { opacity: 1 })
+            .fromTo('.p-scene-3 img', { scale: 1.1, rotationZ: 2 }, { scale: 1, rotationZ: 0, duration: 2 })
+            .fromTo('.p-scene-3 .promo-text', { y: 100, opacity: 0, rotationX: 45 }, { y: 0, opacity: 1, rotationX: 0, duration: 1, ease: 'power4.out' }, "-=1.8")
+            .to('.p-scene-3', { opacity: 0, duration: 0.5 }, "+=1.5");
+
+        ScrollTrigger.create({
+            trigger: "#promo-video",
+            start: "top 60%",
+            onEnter: () => promoTl.play(),
+            onLeaveBack: () => promoTl.pause()
+        });
+    </script>
+</body>
+</html>
